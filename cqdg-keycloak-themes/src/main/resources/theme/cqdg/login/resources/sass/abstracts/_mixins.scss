@@ -1,0 +1,43 @@
+@mixin clearfix {
+  &::after{
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin forms-commons {
+  display: grid;
+  grid-template-columns: 35% 65%;
+  grid-gap: 2rem;
+  padding: 0 25rem;
+  align-items: center;
+  position: relative;
+
+  &__form{
+    .btn {
+      background: $color-accent;
+    }
+  }
+
+  &__text{
+    h1 {
+      line-height: 4.6rem;
+      margin: 0 0 1.6rem;
+    }
+    h2 {
+      line-height: 2.8rem;
+      margin: 0;
+    }
+    p {
+      display: block;
+      font-size: 2rem;
+      line-height: 2.8rem;
+      margin: 0 0 1.6rem;
+    }
+  }
+
+  #kc-form-options {
+    margin-bottom: 1rem;
+  }
+}

@@ -1,0 +1,48 @@
+#!/bin/bash
+
+POSTGRES_DIRECTORY="$(pwd)/postgres_data";
+
+helpFunction(){
+   echo ""
+   echo "Usage: $0 [start|stop|status]"
+   exit 1 # Exit script after printing help
+}
+
+start(){
+  if [ ! -d "$POSTGRES_DIRECTORY" ]; then
+    mkdir -p $POSTGRES_DIRECTORY;
+  fi
+
+  (cd ../../; ./build.sh)
+  docker-compose up
+}
+
+stop(){
+  docker-compose down
+}
+
+status(){
+  if [ -z `docker-compose ps -q postgres` ] || [ -z `docker ps -q --no-trunc | grep $(docker-compose ps -q postgres)` ]; then
+    echo "Postgres is not running."
+  else
+    echo "Postgres is running."
+  fi
+
+  if [ -z `docker-compose ps -q keycloak` ] || [ -z `docker ps -q --no-trunc | grep $(docker-compose ps -q keycloak)` ]; then
+    echo "Keycloak is not running."
+  else
+    echo "Keycloak is running."
+  fi
+}
+
+#if ! [ $(id -u) = 0 ]; then
+#   echo "The script need to be run using sudo." >&2
+#   exit 1
+#fi
+
+case "$1" in
+  start) start ;;
+  stop) stop ;;
+  status) status ;;
+  *) helpFunction ;;
+esac

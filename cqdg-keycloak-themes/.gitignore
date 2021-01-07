@@ -1,0 +1,13 @@
+.sass-cache
+*.css.map
+*.sass.map
+*.scss.map
+node_modules
+node
+src/main/resources/theme/cqdg/login/resources/css/style.css
+pla.txt
+.idea
+*.iml
+docker/postgres_data
+docker/providers
+docker/deployments

@@ -1,0 +1,20 @@
+.form {
+  &__group {
+    margin-bottom: 1rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    span[id^='input-error'] {
+      display: block;
+    }
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+  }
+}

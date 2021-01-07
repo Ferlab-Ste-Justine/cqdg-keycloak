@@ -1,0 +1,22 @@
+{
+  "name": "cqdg-keycloak-themes",
+  "version": "2021.1.0",
+  "description": "CQDG Keycloak Theme ==============",
+  "scripts": {
+    "compile:sass": "node-sass src/main/resources/theme/cqdg/login/resources/sass/main.scss src/main/resources/theme/cqdg/login/resources/css/style.css",
+    "start": "node-sass src/main/resources/theme/cqdg/login/resources/sass/main.scss src/main/resources/theme/cqdg/login/resources/css/style.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ferlab-Ste-Justine/cqdg-keycloak-themes.git"
+  },
+  "author": "Patrice Laplante",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ferlab-Ste-Justine/cqdg-keycloak-themes/issues"
+  },
+  "homepage": "https://github.com/Ferlab-Ste-Justine/cqdg-keycloak-themes#readme",
+  "devDependencies": {
+    "node-sass": "^5.0.0"
+  }
+}
