@@ -17,8 +17,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <keycloak.version>12.0.1</keycloak.version>
     <jboss.logging.version>3.4.1.Final</jboss.logging.version>
   </properties>
@@ -78,7 +78,7 @@
         <artifactId>maven-jar-plugin</artifactId>
         <version>3.2.0</version>
         <configuration>
-          <outputDirectory>../target/providers</outputDirectory>
+          <outputDirectory>../target/standalone/deployments</outputDirectory>
         </configuration>
       </plugin>
     </plugins>
