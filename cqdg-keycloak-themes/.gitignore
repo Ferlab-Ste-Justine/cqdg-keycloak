@@ -8,6 +8,3 @@ src/main/resources/theme/cqdg/login/resources/css/style.css
 pla.txt
 .idea
 *.iml
-docker/postgres_data
-docker/providers
-docker/deployments

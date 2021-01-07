@@ -13,7 +13,7 @@ start(){
     mkdir -p $POSTGRES_DIRECTORY;
   fi
 
-  (cd ../../; ./build.sh)
+  (cd ../; ./build.sh)
   docker-compose up
 }
 
