@@ -18,3 +18,10 @@ Build (mvn clean package) the cqdg-keycloak-hooks project and copy target/cqdg-k
   5. password validation
 * Go to the "Bindings" tab and, select "CQDG Registration" in the dropdown list next to "Registration Flow"
 * Save.
+
+Development
+------------
+
+#### Remote Debug Setup
+
+![IntelliJ Remote Debugging Configuration](https://github.com/Ferlab-Ste-Justine/cqdg-keycloak/blob/main/cqdg-keycloak-hooks/remote-debugging.png)
