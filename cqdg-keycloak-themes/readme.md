@@ -1,81 +1,20 @@
 CQDG Keycloak Theme
 ==============
 
-Development
--------------
-
-Launch ``npm start`` at the root of the project.
-
-Launch ``keycloak start`` in the docker folder.
-
-Then go to http://localhost:8080 and you can login using admin/password.
-
-### Configure Keycloak Mail Server
-
-```
-Host: smtp.gmail.com
-
-Port: 587
-
-From: your-account@gmail.com
-
-Activate StartTLS
-
-Activate Authentication
-```
-
-Provide your username and password for your gmail account and save the configuration.
-
-N.B.: In order for this to work, you might have to allow access to "less secure apps" in your gmail account settings.
-
-### Configuring reCaptcha
-
-#### Google API Key
-Go to https://www.google.com/recaptcha/admin/create in order to create the API Key.
-
-Select the reCAPTCHA v2 with the "I'm not a robot" tickbox.
-
-Domains: localhost
-
-#### Keycloak configuration
-
-https://www.keycloak.org/docs/latest/server_admin/#_recaptcha
-
-```
-X-Frame-Options: ALLOW-FROM https://www.google.com
-Content-Security-Policy: frame-src 'self' https://www.google.com; frame-ancestors 'self' localhost http://localhost:3000; object-src 'none';
-```
-
 Deploy Themes
 -------------
 
 You can either deploy the themes by copying to the themes folder or as modules.
 
-Deploy SPI
-------------
-
-Build (mvn clean package) the cqdg-keycloak-hooks project and copy target/cqdg-keycloak-hooks.jar into the cqdg-keycloak-theme/docker/providers folder.
-
-Docker-compose will copy the content of this folder in the /opt/jboss/keycloak/providers of the Keycloak container and the SPI will be deployed at startup.
-
-To add the custom validation flow to the registration flow:
-* Login as admin
-* Go to Authentication menu - Flows tab.
-* Copy the Registration flow (CQDG Registration flow)
-* Click the "Actions" drop down menu next to the "CQDG Registration Registration Form" line and select "Add execution"
-* Select "Profile Custom Fields Validation" and save.
-* Sort the action in the following order: 
-  1. registration user creation
-  2. recaptcha
-  3. profile custom fields validation
-  4. profile validation
-  5. password validation
-* Go to the "Bindings" tab and, select "CQDG Registration" in the dropdown list next to "Registration Flow"
-* Save.
-
 ### Copy
 
 Simplest way to deploy the themes is to copy `src/main/resources/theme/*` to `themes/`.
+
+### Copy Jar
+
+    mvn clean install
+    cp cqdg-keycloak-themes.jar $KEYCLOAK_HOME/standalone/deployments
+
 
 ### Module
 
