@@ -1,0 +1,55 @@
+.page-container {
+	@include page-container;
+}
+
+.page-content-container {
+	@include page-content-container;
+
+    .ant-alert {
+        margin-bottom: 2.4rem;
+
+        .ant-alert-content {
+            .ant-alert-message {
+                font-size:1.6rem;
+                line-height: 2.4rem;    
+                font-weight: 600;
+                margin-bottom: .4rem;
+            }
+    
+            .ant-alert-description {
+                line-height: 2.2rem;
+            }
+        }    
+
+
+        &.ant-alert-error {
+            .ant-alert-close-icon {
+                .anticon-close {
+                    color: $red-8;
+                }
+            }
+
+            .ant-alert-content {
+                .ant-alert-message {
+                    color: $red-8;
+                }
+        
+                .ant-alert-description {
+                    color: $red-8;
+                }
+            }    
+        }
+
+        &.ant-alert-success {
+            .ant-alert-content {
+                .ant-alert-message {
+                    color: $green-9;
+                }
+        
+                .ant-alert-description {
+                    color: $green-9;
+                }
+            }    
+        }
+    }
+}

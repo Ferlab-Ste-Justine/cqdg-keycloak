@@ -3,7 +3,11 @@
   "version": "2021.1.0",
   "description": "CQDG Keycloak Theme ==============",
   "scripts": {
-    "compile:sass": "node-sass src/main/resources/theme/cqdg/login/resources/sass/main.scss src/main/resources/theme/cqdg/login/resources/css/style.css",
+    "compile": "npm run compile:common:sass && npm run compile:cqdg:sass",
+    "compile:theme": "ferlabui-script compile -t cqdg -d src/main/resources/theme/main/common/resources/dist",
+    "compile:cqdg:sass:watch": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js src/main/resources/theme/cqdg/login/resources/scss/index.scss src/main/resources/theme/cqdg/login/resources/css/index.css -w",
+    "compile:common:sass": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js src/main/resources/theme/main/common/resources/scss/main.scss src/main/resources/theme/main/common/resources/css/main.css",
+    "compile:cqdg:sass": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js src/main/resources/theme/cqdg/login/resources/scss/index.scss src/main/resources/theme/cqdg/login/resources/css/index.css",
     "start": "node-sass src/main/resources/theme/cqdg/login/resources/sass/main.scss src/main/resources/theme/cqdg/login/resources/css/style.css -w"
   },
   "repository": {
@@ -17,6 +21,7 @@
   },
   "homepage": "https://github.com/Ferlab-Ste-Justine/cqdg-keycloak-themes#readme",
   "devDependencies": {
-    "node-sass": "^5.0.0"
+    "node-sass": "^5.0.0",
+    "node-sass-package-importer": "^5.3.2"
   }
 }
