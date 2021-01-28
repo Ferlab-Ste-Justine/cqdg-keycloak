@@ -73,6 +73,21 @@
     .page-content-container .ant-alert.ant-alert-success .ant-alert-content .ant-alert-description {
       color: #575A00; }
 
+.login .social-link {
+  display: inline-block;
+  width: 100%; }
+  .login .social-link .social-button {
+    display: flex;
+    align-items: center;
+    background: #4285F4;
+    color: #fff;
+    border-radius: 2px; }
+    .login .social-link .social-button .idp-icon {
+      padding: .1rem; }
+    .login .social-link .social-button .idp-text {
+      text-align: center;
+      width: 100%; }
+
 .register .form__row {
   display: flex; }
   .register .form__row__item {

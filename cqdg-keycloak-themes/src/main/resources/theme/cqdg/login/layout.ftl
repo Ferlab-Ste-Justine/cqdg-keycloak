@@ -6,7 +6,6 @@
         <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="robots" content="noindex, nofollow">
-        <#--<meta name="google-signin-client_id" content="809681527277-hmrgocu4dhbkfnfgrj20m2v81haa4tlv.apps.googleusercontent.com">-->
         <#if properties.meta?has_content>
             <#list properties.meta?split(' ') as meta>
                 <meta name="${meta?split('==')[0]}" content="${meta?split('==')[1]}"/>
@@ -91,7 +90,7 @@
                 </a>
             </div>
             <div class="header__actions">
-                <a href="/login">
+                <a href="http://localhost:3000/login">
                     <button type="button" class="ant-btn ant-btn-text">
                         <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" class="icon" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                         <defs></defs>

@@ -1,4 +1,4 @@
-<#import "template.ftl" as template>
+<#import "layout.ftl" as template>
 <#import "fragments.ftl" as fragments>
 <@template.layout>
     <@fragments.page>

@@ -1,55 +1,21 @@
-.page-container {
-	@include page-container;
-}
+.login {
+    .social-link {
+        display: inline-block;
+        width: 100%;
+        .social-button {
+            display: flex;
+            align-items: center;
+            background: #4285F4;
+            color:  $white;
+            border-radius: 2px;
 
-.page-content-container {
-	@include page-content-container;
-
-    .ant-alert {
-        margin-bottom: 2.4rem;
-
-        .ant-alert-content {
-            .ant-alert-message {
-                font-size:1.6rem;
-                line-height: 2.4rem;    
-                font-weight: 600;
-                margin-bottom: .4rem;
+            .idp-icon {
+                padding: .1rem;
             }
-    
-            .ant-alert-description {
-                line-height: 2.2rem;
+            .idp-text {
+                text-align: center;
+                width: 100%;
             }
-        }    
-
-
-        &.ant-alert-error {
-            .ant-alert-close-icon {
-                .anticon-close {
-                    color: $red-8;
-                }
-            }
-
-            .ant-alert-content {
-                .ant-alert-message {
-                    color: $red-8;
-                }
-        
-                .ant-alert-description {
-                    color: $red-8;
-                }
-            }    
-        }
-
-        &.ant-alert-success {
-            .ant-alert-content {
-                .ant-alert-message {
-                    color: $green-9;
-                }
-        
-                .ant-alert-description {
-                    color: $green-9;
-                }
-            }    
         }
     }
 }

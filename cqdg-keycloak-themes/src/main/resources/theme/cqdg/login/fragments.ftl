@@ -77,3 +77,11 @@
         </div>
     </section>
 </#macro>
+<#macro idpButton type>
+    <#if type == 'google'>
+        <div class="social-button">
+            <img class="idp-icon" src="${url.resourcesPath}/img/google-icon.svg" />
+            <div class="idp-text">Sign in with Google</div>
+        </div>
+    </#if>
+</#macro>
