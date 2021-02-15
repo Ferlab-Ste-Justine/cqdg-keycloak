@@ -8,7 +8,7 @@
     "compile:cqdg:sass:watch": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js src/main/resources/theme/cqdg/login/resources/scss/index.scss src/main/resources/theme/cqdg/login/resources/css/index.css -w",
     "compile:common:sass": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js src/main/resources/theme/main/common/resources/scss/main.scss src/main/resources/theme/main/common/resources/css/main.css",
     "compile:cqdg:sass": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js src/main/resources/theme/cqdg/login/resources/scss/index.scss src/main/resources/theme/cqdg/login/resources/css/index.css",
-    "start": "node-sass src/main/resources/theme/cqdg/login/resources/sass/main.scss src/main/resources/theme/cqdg/login/resources/css/style.css -w"
+    "start": "(cd ../docker && ./keycloak start) && npm run compile:cqdg:sass:watch"
   },
   "repository": {
     "type": "git",

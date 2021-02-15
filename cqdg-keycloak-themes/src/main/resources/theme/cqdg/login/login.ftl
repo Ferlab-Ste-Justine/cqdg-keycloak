@@ -14,7 +14,7 @@
                         <a href="${url.registrationUrl}" class="ant-btn ant-btn-link link top-link">${msg("doRegister")}</a>
                     </div>
                 </#if>
-                <@fragments.error />
+                <@fragments.error title='${msg("delegationFailedHeader")}' />
                 <@fragments.success />
                 <h2>Connexion</h2>
                 <p>Saisissez vos identifiants pour vous connecter</p>

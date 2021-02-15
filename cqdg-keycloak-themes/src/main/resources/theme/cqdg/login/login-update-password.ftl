@@ -23,7 +23,7 @@
                         <label for="password-new" class="${properties.kcLabelClass!}">${msg("passwordNew")}</label>
                     </div>
                     <div class="${properties.kcInputWrapperClass!}">
-                        <input class="ant-input" type="password" id="password-new" name="password-new" class="${properties.kcInputClass!}"
+                        <input class="ant-input" type="password" id="password-new" name="password-new"
                                 autofocus autocomplete="new-password"
                                 aria-invalid="<#if messagesPerField.existsError('password','password-confirm')>true</#if>"
                         />
@@ -43,7 +43,6 @@
                     </div>
                     <div class="${properties.kcInputWrapperClass!}">
                         <input class="ant-input" type="password" id="password-confirm" name="password-confirm"
-                                class="${properties.kcInputClass!}"
                                 autocomplete="new-password"
                                 aria-invalid="<#if messagesPerField.existsError('password-confirm')>true</#if>"
                         />

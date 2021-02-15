@@ -1,4 +1,4 @@
-<#macro error>
+<#macro error title='Error'>
     <#if message?has_content && message.type == 'error'>
         <script type="text/javascript">
             function closeAlert() {
@@ -8,7 +8,7 @@
         </script>
         <div id="alert" data-show="true" class="ant-alert ant-alert-error ant-alert-with-description ant-alert-no-icon" role="alert">
             <div class="ant-alert-content">
-                <div class="ant-alert-message">Connexion échouée</div>
+                <div class="ant-alert-message">${kcSanitize(title)?no_esc}</div>
                 <div class="ant-alert-description">${kcSanitize(message.summary)?no_esc}</div>
             </div>
             <button onclick="closeAlert()" type="button" class="ant-alert-close-icon" tabindex="0">
@@ -79,9 +79,15 @@
 </#macro>
 <#macro idpButton type>
     <#if type == 'google'>
-        <div class="social-button">
+        <div class="social-button google">
             <img class="idp-icon" src="${url.resourcesPath}/img/google-icon.svg" />
             <div class="idp-text">Sign in with Google</div>
+        </div>
+    </#if>
+    <#if type == 'orcid'>
+        <div class="social-button orcid">
+            <img class="idp-icon" src="${url.resourcesPath}/img/orcid-icon.svg" />
+            <div class="idp-text">Sign in with Orcid</div>
         </div>
     </#if>
 </#macro>
