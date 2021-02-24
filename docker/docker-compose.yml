@@ -1,7 +1,7 @@
 version: '3.5'
 
 services:
-  postgres:
+  keycloak-postgres:
     image: postgres
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
@@ -22,7 +22,7 @@ services:
       - ../target/standalone/deployments:/opt/jboss/keycloak/standalone/deployments
     environment:
       DB_VENDOR: POSTGRES
-      DB_ADDR: postgres
+      DB_ADDR: keycloak-postgres
       DB_DATABASE: keycloak
       DB_USER: keycloak
       DB_SCHEMA: public
@@ -36,4 +36,4 @@ services:
       - 8787:8787
       - 9990:9990
     depends_on:
-      - postgres
+      - keycloak-postgres

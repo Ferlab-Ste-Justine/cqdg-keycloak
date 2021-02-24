@@ -3,6 +3,28 @@ CQDG Keycloak
 
 Development
 -------------
+To point to latest ferlab-ui, checkout the ferlab-ui branch you want to use and :
+
+```
+ferlab-ui/packages/style
+npm install
+npm link
+```
+
+Then :
+
+```
+cqdg-keycloak/cqdg-keycloak-themes
+npm install
+npm link @ferlab/style
+```
+
+If you wish to go back to pointing to the ferlab-ui from npmjs.org :
+
+```
+npm unlink @ferlab/style
+npm install 
+```
 
 Launch ``npm start`` at the root of the cqdg-keycloak-themes project.
 

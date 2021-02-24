@@ -113,13 +113,9 @@
                                     id="user.attributes.affiliation"
                                     aria-invalid="<#if messagesPerField.existsError('user.attributes.affiliation')>true</#if>"
                             >
-                                <#--<#list affiliations?keys as key> -->
-                                    <option value="affiliation 1">Affiliation 1</option>
-                                    <option value="affiliation 2">Affiliation 2</option>
-                                    <option value="affiliation 3">Affiliation 3</option>
-                                    <option value="affiliation 4">Affiliation 4</option>
-                                    <option value="affiliation 5">Affiliation 5</option>
-                                <#--</#list>-->
+                                <#list affiliations?keys as key>
+                                    <option value="${key}">${msg(affiliations[key])}</option>
+                                </#list>
                             </select>
                             <#if messagesPerField.existsError('user.attributes.affiliation')>
                                 <span id="input-error-password" aria-live="polite">
@@ -138,14 +134,9 @@
                                     id="user.attributes.title"
                                     aria-invalid="<#if messagesPerField.existsError('user.attributes.title')>true</#if>"
                             >
-                                <#-- <#list titles?keys as key> 
-                                    <option value="${key}">${msg(titles[key])}</option>-->
-                                    <option value="title 1">title 1</option>
-                                    <option value="title 2">title 2</option>
-                                    <option value="title 3">title 3</option>
-                                    <option value="title 4">title 4</option>
-                                    <option value="title 5">title 5</option>
-                                <#-- </#list> -->
+                                <#list titles?keys as key>
+                                    <option value="${key}">${msg(titles[key])}</option>
+                                </#list>
                             </select>
 
                             <#if messagesPerField.existsError('user.attributes.title')>
@@ -166,15 +157,9 @@
                                 id="user.attributes.researchDomain"
                                 aria-invalid="<#if messagesPerField.existsError('user.attributes.researchDomain')>true</#if>"
                         >
-                            <#--<#list researchDomains?keys as key>
-                                <option value="${key}">${msg(researchDomains[key])}</option>-->
-                                <option value="domain 1">domain 1</option>
-                                <option value="domain 2">domain 2</option>
-                                <option value="domain 3">domain 3</option>
-                                <option value="domain 4">domain 4</option>
-                                <option value="domain 5">domain 5</option>
-
-                            <#--</#list>-->
+                            <#list researchDomains?keys as key>
+                                <option value="${key}">${msg(researchDomains[key])}</option>
+                            </#list>
                         </select>
 
                         <#if messagesPerField.existsError('user.attributes.researchDomain')>

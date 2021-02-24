@@ -1,4 +1,4 @@
-package ca.cqdg.authentication.forms;
+package ca.cqdg.forms.registration;
 
 import org.jboss.logging.Logger;
 
@@ -19,7 +19,6 @@ import org.keycloak.theme.Theme;
 import javax.ws.rs.core.MultivaluedMap;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class RegistrationCustomFields implements FormAction, FormActionFactory {
 
@@ -39,10 +38,6 @@ public class RegistrationCustomFields implements FormAction, FormActionFactory {
 
     public static final String MESSAGE_RESEARCH_DOMAIN_REQUIRED = "requiredResearchDomainMessage";
     public static final String MESSAGE_RESEARCH_DOMAIN_INVALID = "invalidResearchDomainMessage";
-
-    private static Map<String, String> affiliations = null;
-    private static Map<String, String> titles = null;
-    private static Map<String, String> researchDomains = null;
 
     @Override
     public String getDisplayType() {
@@ -84,38 +79,7 @@ public class RegistrationCustomFields implements FormAction, FormActionFactory {
 
     @Override
     public void buildPage(FormContext context, LoginFormsProvider form) {
-        loadReferentials(context, context.getSession().getContext().resolveLocale(context.getUser()));
-
-        form.setAttribute("affiliations", affiliations);
-        form.setAttribute("titles", titles);
-        form.setAttribute("researchDomains", researchDomains);
-    }
-
-    private void loadReferentials(FormContext context, Locale locale){
-        //Populate the drop down lists based on the values defined in the theme's message_XX.properties
-        if(affiliations == null || titles == null || researchDomains == null) {
-            try {
-                Properties messageBundle = context.getSession().theme().getTheme(Theme.Type.LOGIN).getMessages(locale);
-
-                affiliations = new TreeMap<>();
-                titles = new TreeMap<>();
-                researchDomains = new TreeMap<>();
-
-                messageBundle.keySet().stream().map(x -> String.valueOf(x)).forEach(
-                        key -> {
-                            Map<String, String> m = key.startsWith("cqdg.affiliation.") ? affiliations :
-                                                    key.startsWith("cqdg.title.") ? titles :
-                                                    key.startsWith("cqdg.researchDomain.") ? researchDomains : null;
-
-                            if (m != null && key.indexOf(".") > 0) {
-                                m.put(key.substring(key.lastIndexOf(".") + 1), key);
-                            }
-                        }
-                );
-            } catch (IOException e) {
-                logger.error("Failed to retrieve theme - wont be able to populate drop down list.", e);
-            }
-        }
+        logger.debug("Preparing to display page");
     }
 
     @Override
