@@ -114,7 +114,9 @@
                                     aria-invalid="<#if messagesPerField.existsError('user.attributes.affiliation')>true</#if>"
                             >
                                 <#list affiliations?keys as key>
-                                    <option value="${key}">${msg(affiliations[key])}</option>
+                                    <option value="${key}" <#if key == register.formData["user.attributes.affiliation"]!'notfound'>selected = "selected"</#if>>
+                                        ${msg(affiliations[key])}
+                                    </option>
                                 </#list>
                             </select>
                             <#if messagesPerField.existsError('user.attributes.affiliation')>
@@ -135,7 +137,9 @@
                                     aria-invalid="<#if messagesPerField.existsError('user.attributes.title')>true</#if>"
                             >
                                 <#list titles?keys as key>
-                                    <option value="${key}">${msg(titles[key])}</option>
+                                    <option value="${key}" <#if key == register.formData["user.attributes.title"]!'notfound'>selected = "selected"</#if>>
+                                        ${msg(titles[key])}
+                                    </option>
                                 </#list>
                             </select>
 
@@ -158,7 +162,9 @@
                                 aria-invalid="<#if messagesPerField.existsError('user.attributes.researchDomain')>true</#if>"
                         >
                             <#list researchDomains?keys as key>
-                                <option value="${key}">${msg(researchDomains[key])}</option>
+                                <option value="${key}" <#if key == register.formData["user.attributes.researchDomain"]!'notfound'>selected = "selected"</#if>>
+                                    ${msg(researchDomains[key])}
+                                </option>
                             </#list>
                         </select>
 

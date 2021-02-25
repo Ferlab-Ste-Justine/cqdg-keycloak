@@ -500,11 +500,6 @@
                 <default>${env.KEYCLOAK_DEFAULT_THEME:keycloak}</default>
                 <dir>${jboss.home.dir}/themes</dir>
             </theme>
-            <!--
-            <spi name="login">
-                <default-provider>customFreemarker</default-provider>
-            </spi>
-            -->
             <spi name="login">
                 <provider name="freemarker" enabled="false"/>
                 <provider name="customFreemarker" enabled="true"/>

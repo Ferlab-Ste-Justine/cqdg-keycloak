@@ -1,5 +1,6 @@
 package ca.cqdg.forms.registration;
 
+import ca.cqdg.forms.FormUtils;
 import org.jboss.logging.Logger;
 
 import org.keycloak.Config;
@@ -14,10 +15,8 @@ import org.keycloak.models.*;
 import org.keycloak.models.utils.FormMessage;
 import org.keycloak.provider.ProviderConfigProperty;
 import org.keycloak.services.validation.Validation;
-import org.keycloak.theme.Theme;
 
 import javax.ws.rs.core.MultivaluedMap;
-import java.io.IOException;
 import java.util.*;
 
 public class RegistrationCustomFields implements FormAction, FormActionFactory {
@@ -25,19 +24,6 @@ public class RegistrationCustomFields implements FormAction, FormActionFactory {
     private static final Logger logger = Logger.getLogger(RegistrationCustomFields.class);
 
     public static final String PROVIDER_ID = "registration-custom-profile-action";
-
-    public static final String FIELD_AFFILIATION = "user.attributes.affiliation";
-    public static final String FIELD_TITLE = "user.attributes.title";
-    public static final String FIELD_RESEARCH_DOMAIN = "user.attributes.researchDomain";
-
-    public static final String MESSAGE_AFFILIATION_REQUIRED = "requiredAffiliationMessage";
-    public static final String MESSAGE_AFFILIATION_INVALID = "invalidAffiliationMessage";
-
-    public static final String MESSAGE_TITLE_REQUIRED = "requiredTitleMessage";
-    public static final String MESSAGE_TITLE_INVALID = "invalidTitleMessage";
-
-    public static final String MESSAGE_RESEARCH_DOMAIN_REQUIRED = "requiredResearchDomainMessage";
-    public static final String MESSAGE_RESEARCH_DOMAIN_INVALID = "invalidResearchDomainMessage";
 
     @Override
     public String getDisplayType() {
@@ -85,39 +71,9 @@ public class RegistrationCustomFields implements FormAction, FormActionFactory {
     @Override
     public void validate(ValidationContext context) {
         MultivaluedMap<String, String> formData = context.getHttpRequest().getDecodedFormParameters();
-        List<FormMessage> errors = new ArrayList<>();
         context.getEvent().detail(Details.REGISTER_METHOD, "form");
 
-        String affiliation = formData.getFirst(FIELD_AFFILIATION);
-        String title = formData.getFirst(FIELD_TITLE);
-        String researchDomain = formData.getFirst(FIELD_RESEARCH_DOMAIN);
-
-        if (Validation.isBlank(affiliation)) {
-            errors.add(new FormMessage(FIELD_AFFILIATION, MESSAGE_AFFILIATION_REQUIRED));
-        }else{
-            //validate if valid affiliation
-            if(false){
-                errors.add(new FormMessage(FIELD_AFFILIATION, MESSAGE_AFFILIATION_INVALID));
-            }
-        }
-
-        if (Validation.isBlank(title)) {
-            errors.add(new FormMessage(FIELD_TITLE, MESSAGE_TITLE_REQUIRED));
-        }else{
-            //validate if valid affiliation
-            if(false){
-                errors.add(new FormMessage(FIELD_TITLE, MESSAGE_TITLE_INVALID));
-            }
-        }
-
-        if (Validation.isBlank(researchDomain)) {
-            errors.add(new FormMessage(FIELD_RESEARCH_DOMAIN, MESSAGE_RESEARCH_DOMAIN_REQUIRED));
-        }else{
-            //validate if valid affiliation
-            if(false){
-                errors.add(new FormMessage(FIELD_RESEARCH_DOMAIN, MESSAGE_RESEARCH_DOMAIN_INVALID));
-            }
-        }
+        List<FormMessage> errors = FormUtils.validate(formData);
 
         if (errors.size() > 0) {
             context.error(Errors.INVALID_REGISTRATION);

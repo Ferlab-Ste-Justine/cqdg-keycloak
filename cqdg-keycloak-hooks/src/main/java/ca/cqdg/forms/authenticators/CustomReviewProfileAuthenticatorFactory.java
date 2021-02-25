@@ -16,4 +16,9 @@ public class CustomReviewProfileAuthenticatorFactory extends IdpReviewProfileAut
     public String getId() {
         return "custom-review-profile";
     }
+
+    @Override
+    public String getDisplayType() {
+        return "Custom Review Profile";
+    }
 }

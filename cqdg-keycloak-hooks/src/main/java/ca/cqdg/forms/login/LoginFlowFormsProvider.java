@@ -1,7 +1,9 @@
 package ca.cqdg.forms.login;
 
+import ca.cqdg.forms.FormUtils;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.lang.StringUtils;
 import org.jboss.logging.Logger;
 import org.keycloak.authentication.authenticators.broker.util.SerializedBrokeredIdentityContext;
 import org.keycloak.broker.provider.BrokeredIdentityContext;
@@ -11,10 +13,12 @@ import org.keycloak.forms.login.freemarker.FreeMarkerLoginFormsProvider;
 import org.keycloak.forms.login.freemarker.Templates;
 import org.keycloak.forms.login.freemarker.model.*;
 import org.keycloak.models.KeycloakSession;
+import org.keycloak.models.UserModel;
 import org.keycloak.theme.FreeMarkerUtil;
 import org.keycloak.theme.Theme;
 import org.keycloak.theme.beans.AdvancedMessageFormatterMethod;
 import org.keycloak.theme.beans.MessageType;
+import org.keycloak.userprofile.UserProfileProvider;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.ws.rs.core.Response;
@@ -23,10 +27,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Properties;
-import java.util.TreeMap;
+import java.util.*;
 
 public class LoginFlowFormsProvider extends FreeMarkerLoginFormsProvider {
 
@@ -85,6 +86,9 @@ public class LoginFlowFormsProvider extends FreeMarkerLoginFormsProvider {
                     }
                 }
 
+                UserModel userModel = context.getSession().users().getUserByEmail(userCtx.getEmail(), this.realm);
+                FormUtils.syncContextAttributes(userModel, userCtx);
+
                 ProfileBean user = new ProfileBean(userCtx, this.formData);
 
                 this.attributes.put("user", user);
@@ -122,8 +126,14 @@ public class LoginFlowFormsProvider extends FreeMarkerLoginFormsProvider {
 
     private String getOrcidEmail(String brokerUsername){
         try {
-            // TODO: System.getEnv("ORCID_URL");
-            URL url = new URL("https://sandbox.orcid.org/" + brokerUsername + "/person.json");
+            String orcidUrl = System.getenv("ORCID_URL");
+            if(orcidUrl == null || orcidUrl.trim().length() == 0){
+                logger.error("ORCID_URL is not defined.  Please add it to your environment variables.");
+            }
+
+            orcidUrl = orcidUrl.endsWith("/") ? orcidUrl : orcidUrl.concat("/");
+
+            URL url = new URL( orcidUrl.concat(brokerUsername).concat("/person.json"));
 
             HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
             con.setRequestMethod("GET");

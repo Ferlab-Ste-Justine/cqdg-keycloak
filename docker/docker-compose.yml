@@ -31,6 +31,7 @@ services:
       KEYCLOAK_PASSWORD: password
       DEBUG: 'true'
       DEBUG_PORT: '*:8787'
+      ORCID_URL: 'https://sandbox.orcid.org'
     ports:
       - 8080:8080
       - 8787:8787
