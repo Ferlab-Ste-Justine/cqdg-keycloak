@@ -1,0 +1,167 @@
+
+.page-container {
+	margin: 0 auto;
+	max-width: 1440px;
+}
+
+.page-content-container{
+    display: grid;
+	grid-template-columns: 450px 1fr;
+	grid-gap: 6rem;
+	padding: 10.4rem 16rem;
+	position: relative;
+
+	.text-right {
+		text-align: right;
+	}
+
+	.text-center {
+		text-align: center;
+	}
+
+	.ant-btn-link {
+		text-decoration: underline;
+		padding: 0;
+
+		&.top-link {
+			font-size: 1.4rem;
+			line-height: 2.2rem;
+		}
+
+		&.bottom-link {
+			font-size: 1.2rem;
+			line-height: 2rem;
+			height: auto;
+		}
+
+		&.link {
+			color: $gray-7;
+		}
+	}
+
+	.text-container {
+		h2 {
+			font-size: 2rem;
+			line-height: 2.8rem;
+			color: $white;
+		}
+		h1 {
+			font-size: 3.8rem;
+			line-height: 4.6rem;
+			color: $white;
+			margin-bottom: 1.6rem;
+		}
+
+		p {
+			font-size: 2rem;
+			line-height: 2.8rem;
+			color: $white;
+		}
+	}
+
+	.form-container {
+		h2 {
+			color: $gray-9;
+			line-height: 2.8rem;
+			font-size: 2rem;
+		}
+		p {
+			font-size: 1.6rem;
+			line-height: 2.4rem;
+		}
+		.ant-btn-primary[type=submit] {
+			display: flex;
+			width: 100%;
+			justify-content: center;
+		}
+
+		.form__group {
+			margin-bottom: .8rem;
+		}
+
+		.notch-content {
+			&__header {
+				margin-bottom: 2.4rem;
+			}
+		}
+
+		.form {
+			&__row {
+				display: flex;
+				
+				&__item {
+					width: 100%;
+					&:not(:last-child) {
+						margin-right: .8rem;
+					}
+				}
+			}
+			&__group {
+				select {
+					//width: 100%;
+				}
+			}
+		}
+	
+    }
+    
+    .ant-alert {
+        margin-bottom: 2.4rem;
+
+        .ant-alert-content {
+            .ant-alert-message {
+                font-size:1.6rem;
+                line-height: 2.4rem;    
+                font-weight: 600;
+                margin-bottom: .4rem;
+            }
+    
+            .ant-alert-description {
+                line-height: 2.2rem;
+            }
+        }    
+
+
+        &.ant-alert-error {
+            .ant-alert-close-icon {
+                .anticon-close {
+                    color: $red-8;
+                }
+            }
+
+            .ant-alert-content {
+                .ant-alert-message {
+                    color: $red-8;
+                }
+        
+                .ant-alert-description {
+                    color: $red-8;
+                }
+            }    
+        }
+
+        &.ant-alert-success {
+            .ant-alert-content {
+                .ant-alert-message {
+                    color: $green-9;
+                }
+        
+                .ant-alert-description {
+                    color: $green-9;
+                }
+            }    
+        }
+
+        &.ant-alert-info {
+            .ant-alert-content {
+                .ant-alert-message {
+                    color: $blue-9;
+                }
+        
+                .ant-alert-description {
+                    color: $blue-9;
+                }
+            }    
+        }
+    }
+}

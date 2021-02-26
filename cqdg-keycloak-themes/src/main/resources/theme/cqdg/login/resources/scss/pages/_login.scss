@@ -1,0 +1,32 @@
+.login {
+    .social-link {
+        display: inline-block;
+        width: 100%;
+        .social-button {
+            display: flex;
+            align-items: center;
+            color:  $white;
+            border-radius: 2px;
+
+            .idp-icon {
+                padding: .1rem;
+            }
+            .idp-text {
+                text-align: center;
+                width: 100%;
+            }
+        }
+
+        .google {
+            background: #4285F4;
+        }
+        .orcid {
+            background: #A6CE39;
+            height: 40px;
+
+            .idp-icon {
+                padding: 0 0 0 .8rem;
+            }
+        }
+    }
+}

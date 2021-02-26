@@ -8,7 +8,7 @@
         <groupId>ca.cqdg</groupId>
         <artifactId>cqdg-keycloak</artifactId>
         <version>2021.1</version>
-      </parent>
+    </parent>
 
     <artifactId>cqdg-keycloak-themes</artifactId>
     <version>2021.1</version>
@@ -66,16 +66,6 @@
                         <phase>generate-resources</phase>
                         <configuration>
                             <arguments>install</arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>npm compile:sass</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                        <phase>generate-resources</phase>
-                        <configuration>
-                            <arguments>run compile:sass</arguments>
                         </configuration>
                     </execution>
                 </executions>

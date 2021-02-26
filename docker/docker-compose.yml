@@ -1,7 +1,7 @@
 version: '3.5'
 
 services:
-  postgres:
+  keycloak-postgres:
     image: postgres
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
@@ -16,12 +16,13 @@ services:
     volumes:
       - ../cqdg-keycloak-themes/src/main/resources/theme/cqdg:/opt/jboss/keycloak/themes/cqdg
       - ../cqdg-keycloak-themes/src/main/resources/theme/cqdg-admin:/opt/jboss/keycloak/themes/cqdg-admin
+      - ../cqdg-keycloak-themes/src/main/resources/theme/main:/opt/jboss/keycloak/themes/main
       - ./standalone.xml:/opt/jboss/keycloak/standalone/configuration/standalone.xml
       - ./standalone-ha.xml:/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml
       - ../target/standalone/deployments:/opt/jboss/keycloak/standalone/deployments
     environment:
       DB_VENDOR: POSTGRES
-      DB_ADDR: postgres
+      DB_ADDR: keycloak-postgres
       DB_DATABASE: keycloak
       DB_USER: keycloak
       DB_SCHEMA: public
@@ -30,9 +31,10 @@ services:
       KEYCLOAK_PASSWORD: password
       DEBUG: 'true'
       DEBUG_PORT: '*:8787'
+      ORCID_URL: 'https://sandbox.orcid.org'
     ports:
       - 8080:8080
       - 8787:8787
       - 9990:9990
     depends_on:
-      - postgres
+      - keycloak-postgres

@@ -1,11 +1,10 @@
-<#import "template.ftl" as layout>
-<@layout.registrationLayout; section>
-    <#if section = "header">
-        <!-- nothing -->
-    <#elseif section = "form">
+<#import "layout.ftl" as template>
+<#import "fragments.ftl" as fragments>
+<@template.layout>
+    <@fragments.page>
         <p id="instruction1" class="instruction">
             ${msg("pageExpiredMsg1")} <a id="loginRestartLink" href="${url.loginRestartFlowUrl}">${msg("doClickHere")}</a> .<br/>
             ${msg("pageExpiredMsg2")} <a id="loginContinueLink" href="${url.loginAction}">${msg("doClickHere")}</a> .
         </p>
-    </#if>
-</@layout.registrationLayout>
+    </@fragments.page>
+</@template.layout>

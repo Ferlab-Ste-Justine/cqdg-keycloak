@@ -1,0 +1,15 @@
+@import '../dist/antd.css';
+@import '../dist/colors';
+@import '~@ferlab/style/themes/cqdg/main';
+
+@import '../components/header';
+@import '~@ferlab/style/themes/cqdg/components/footer';
+@import '../components/cardContainerNotch';
+
+.main-content {
+    height: calc(100vh - 166px);
+    background: url(../img/pills_bg.svg) no-repeat, linear-gradient(268deg, #28aae2, #006095 98%);
+    background-size: cover;
+}
+ 
+

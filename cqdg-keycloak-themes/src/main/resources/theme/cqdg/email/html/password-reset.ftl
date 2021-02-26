@@ -238,7 +238,7 @@
                                             </tr>
                                             <tr>
                                                 <td align="right" width="150" height="33" class="fw-100" style="mso-table-lspace:0pt; mso-table-rspace:0pt; text-align:right;">
-                                                    <img alt="CQDG Logo" src="${msg("cqdg.logo")?no_esc}" style="text-align:right;" width="150px" height="33px" />
+                                                    <img alt="CQDG Logo" src="http://localhost:8080${url.resourcesPath}/img/logo.svg" style="text-align:right;" width="150px" height="33px" />
                                                 </td>
                                             </tr>
                                             </tbody>

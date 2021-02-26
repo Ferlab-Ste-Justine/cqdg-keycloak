@@ -1,4 +1,4 @@
-<#import "template.ftl" as layout>
+<#import "layout.ftl" as layout>
 <@layout.registrationLayout displayInfo=true; section>
     <#if section = "header">
         <!-- nothing -->

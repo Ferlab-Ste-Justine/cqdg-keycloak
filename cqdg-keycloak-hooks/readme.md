@@ -19,6 +19,19 @@ Build (mvn clean package) the cqdg-keycloak-hooks project and copy target/cqdg-k
 * Go to the "Bindings" tab and, select "CQDG Registration" in the dropdown list next to "Registration Flow"
 * Save.
 
+####Define custom First Broker Login flow 
+
+* Login as admin
+* Go to Authentication menu - Flows tab.
+* Copy the First Broker Login (CQDG First Broker Login)
+* Click the "Add execution" on the top righ corner and select "Custom Review Profile"
+* Make sure to put the new execution at the very top.
+* Delete the "Review Profile" (default implementation) execution as well as the "Confirm Link Existing Account" execution.
+* Configure the "Custom Review Profile": click "Actions -> Config" and set "Update Profile on First Login" to "ON".
+* Go to the "Identity Providers" menu of the left navigation and edit the Google and Orcid providers to set the "First Login Flow" to "CQDG First Login Flow"
+* Save.
+
+
 Development
 ------------
 
