@@ -256,6 +256,11 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0 4.8rem; }
 
 .main-content {
-  height: calc(100vh - 166px);
   background: url(../img/pills_bg.svg) no-repeat, linear-gradient(268deg, #28aae2, #006095 98%);
   background-size: cover; }
+
+.wrapper {
+  display: grid;
+  grid-template-areas: "header" "content" "footer";
+  grid-template-rows: auto 1fr auto;
+  height: 100vh; }
