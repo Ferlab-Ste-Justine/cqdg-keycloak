@@ -16,13 +16,13 @@
                             <label for="firstName" class="${properties.kcLabelClass!}">${msg("firstName")}</label>
                         </div>
                         <div class="${properties.kcInputWrapperClass!}">
-                            <input class="ant-input" type="text" id="firstName" class="${properties.kcInputClass!}" name="firstName"
+                            <input class="ant-input <#if messagesPerField.existsError('firstName')>error</#if>" type="text" id="firstName" name="firstName"
                                 value="${(register.formData.firstName!'')}"
                                 aria-invalid="<#if messagesPerField.existsError('firstName')>true</#if>"
                             />
 
                             <#if messagesPerField.existsError('firstName')>
-                                <span id="input-error-firstname" aria-live="polite">
+                                <span class="input-error" aria-live="polite">
                                     ${kcSanitize(messagesPerField.get('firstName'))?no_esc}
                                 </span>
                             </#if>
@@ -33,13 +33,13 @@
                             <label for="lastName" class="${properties.kcLabelClass!}">${msg("lastName")}</label>
                         </div>
                         <div class="${properties.kcInputWrapperClass!}">
-                            <input class="ant-input" type="text" id="lastName" class="${properties.kcInputClass!}" name="lastName"
+                            <input class="ant-input <#if messagesPerField.existsError('lastName')>error</#if>" type="text" id="lastName" name="lastName"
                                 value="${(register.formData.lastName!'')}"
                                 aria-invalid="<#if messagesPerField.existsError('lastName')>true</#if>"
                             />
 
                             <#if messagesPerField.existsError('lastName')>
-                                <span id="input-error-lastname" aria-live="polite">
+                                <span class="input-error" aria-live="polite">
                                 ${kcSanitize(messagesPerField.get('lastName'))?no_esc}
                             </span>
                             </#if>
@@ -51,13 +51,13 @@
                         <label for="email" class="${properties.kcLabelClass!}">${msg("email")}</label>
                     </div>
                     <div class="${properties.kcInputWrapperClass!}">
-                        <input class="ant-input" type="text" id="email" class="${properties.kcInputClass!}" name="email"
+                        <input class="ant-input <#if messagesPerField.existsError('email')>error</#if>" type="text" id="email" name="email"
                             value="${(register.formData.email!'')}" autocomplete="email"
                             aria-invalid="<#if messagesPerField.existsError('email')>true</#if>"
                         />
 
                         <#if messagesPerField.existsError('email')>
-                            <span id="input-error-email"  aria-live="polite">
+                            <span class="input-error"  aria-live="polite">
                             ${kcSanitize(messagesPerField.get('email'))?no_esc}
                         </span>
                         </#if>
@@ -70,13 +70,13 @@
                             <label for="password" class="${properties.kcLabelClass!}">${msg("password")}</label>
                         </div>
                         <div class="${properties.kcInputWrapperClass!}">
-                            <input class="ant-input" type="password" id="password" class="${properties.kcInputClass!}" name="password"
+                            <input class="ant-input <#if messagesPerField.existsError('password', 'password-confirm')>error</#if>" type="password" id="password" name="password"
                                 autocomplete="new-password"
                                 aria-invalid="<#if messagesPerField.existsError('password','password-confirm')>true</#if>"
                             />
 
                             <#if messagesPerField.existsError('password')>
-                                <span id="input-error-password" aria-live="polite">
+                                <span class="input-error" aria-live="polite">
                                 ${kcSanitize(messagesPerField.get('password'))?no_esc}
                             </span>
                             </#if>
@@ -89,13 +89,13 @@
                                 class="${properties.kcLabelClass!}">${msg("passwordConfirm")}</label>
                         </div>
                         <div class="${properties.kcInputWrapperClass!}">
-                            <input class="ant-input" type="password" id="password-confirm" class="${properties.kcInputClass!}"
+                            <input class="ant-input <#if messagesPerField.existsError('password-confirm')>error</#if>" type="password" id="password-confirm"
                                 name="password-confirm"
                                 aria-invalid="<#if messagesPerField.existsError('password-confirm')>true</#if>"
                             />
 
                             <#if messagesPerField.existsError('password-confirm')>
-                                <span id="input-error-password-confirm" aria-live="polite">
+                                <span class="input-error" aria-live="polite">
                                     ${kcSanitize(messagesPerField.get('password-confirm'))?no_esc}
                                 </span>
                             </#if>
@@ -109,7 +109,7 @@
                             <label for="user.attributes.affiliation" class="${properties.kcLabelClass!}">${msg("affiliation")}</label>
                         </div>
                         <div class="${properties.kcInputWrapperClass!}">
-                            <select class="ant-input" name="user.attributes.affiliation"
+                            <select class="ant-input <#if messagesPerField.existsError('user.attributes.affiliation')>error</#if>" name="user.attributes.affiliation"
                                     id="user.attributes.affiliation"
                                     aria-invalid="<#if messagesPerField.existsError('user.attributes.affiliation')>true</#if>"
                             >
@@ -120,7 +120,7 @@
                                 </#list>
                             </select>
                             <#if messagesPerField.existsError('user.attributes.affiliation')>
-                                <span id="input-error-password" aria-live="polite">
+                                <span class="input-error" aria-live="polite">
                                     ${kcSanitize(messagesPerField.get('user.attributes.affiliation'))?no_esc}
                                 </span>
                             </#if>
@@ -132,7 +132,7 @@
                             <label for="user.attributes.title" class="${properties.kcLabelClass!}">${msg("title")}</label>
                         </div>
                         <div class="${properties.kcInputWrapperClass!}">
-                            <select class="ant-input" name="user.attributes.title"
+                            <select class="ant-input <#if messagesPerField.existsError('user.attributes.title')>error</#if>" name="user.attributes.title"
                                     id="user.attributes.title"
                                     aria-invalid="<#if messagesPerField.existsError('user.attributes.title')>true</#if>"
                             >
@@ -144,7 +144,7 @@
                             </select>
 
                             <#if messagesPerField.existsError('user.attributes.title')>
-                                <span id="input-error-password" aria-live="polite">
+                                <span class="input-error" aria-live="polite">
                                     ${kcSanitize(messagesPerField.get('user.attributes.title'))?no_esc}
                                 </span>
                             </#if>
@@ -157,7 +157,7 @@
                         <label for="user.attributes.researchDomain" class="${properties.kcLabelClass!}">${msg("researchDomain")}</label>
                     </div>
                     <div class="${properties.kcInputWrapperClass!}">
-                        <select class="ant-input"  name="user.attributes.researchDomain"
+                        <select class="ant-input <#if messagesPerField.existsError('user.attributes.researchDomain')>error</#if>"  name="user.attributes.researchDomain"
                                 id="user.attributes.researchDomain"
                                 aria-invalid="<#if messagesPerField.existsError('user.attributes.researchDomain')>true</#if>"
                         >
@@ -169,7 +169,7 @@
                         </select>
 
                         <#if messagesPerField.existsError('user.attributes.researchDomain')>
-                            <span id="input-error-password" aria-live="polite">
+                            <span class="input-error" aria-live="polite">
                                 ${kcSanitize(messagesPerField.get('user.attributes.researchDomain'))?no_esc}
                             </span>
                         </#if>

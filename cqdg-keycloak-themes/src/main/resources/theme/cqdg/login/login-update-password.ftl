@@ -9,8 +9,8 @@
                 </div>
             </#if>
             <@fragments.error />
-            <h2>Réinitialisation du mot de passe</h2>
-            <p>Saisissez votre nouveau mot de passe.</p>
+            <h2>${msg("doResetPassword")}</h2>
+            <p>${msg("resetPasswordHeadLine")}</p>
         </div>
         <div class="notch-content__body">
             <form id="kc-passwd-update-form" class="reset-password" class="form" action="${url.loginAction}" method="post">
@@ -27,7 +27,7 @@
                                 autofocus autocomplete="new-password"
                                 aria-invalid="<#if messagesPerField.existsError('password','password-confirm')>true</#if>"
                         />
-                        <span class="sub-text">Minimum 8 characters with numbers and symbols</span>
+                        <span class="sub-text">${msg("invalidPasswordCustomMessage", 8)}</span>
 
                         <#if messagesPerField.existsError('password')>
                             <span id="input-error-password" aria-live="polite">

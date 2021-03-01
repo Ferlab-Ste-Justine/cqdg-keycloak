@@ -16,8 +16,8 @@
                 </#if>
                 <@fragments.error title='${msg("delegationFailedHeader")}' />
                 <@fragments.success />
-                <h2>Connexion</h2>
-                <p>Saisissez vos identifiants pour vous connecter</p>
+                <h2>${msg("login")}</h2>
+                <p>${msg("loginHeadLine")}</p>
             </div>
             <div class="notch-content__body">
                 <#if realm.password>

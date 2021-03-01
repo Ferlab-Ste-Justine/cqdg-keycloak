@@ -103,6 +103,13 @@
     .login .social-link .orcid .idp-icon {
       padding: 0 0 0 .8rem; }
 
+.register input.error {
+  border-color: #C54B38; }
+
+.register .input-error {
+  font-size: 1.2rem;
+  color: #C54B38; }
+
 .reset-password .sub-text {
   font-size: 1.2rem;
   color: #7E8DA0; }

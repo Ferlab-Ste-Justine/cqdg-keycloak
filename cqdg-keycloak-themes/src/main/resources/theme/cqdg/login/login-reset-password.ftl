@@ -10,8 +10,8 @@
             </#if>
             <@fragments.error />
 
-            <h2>Mot de passe oublié ?</h2>
-            <p>Saisissez l'adresse courriel de votre compte utilisateur et nous vous enverrons un lien de réinitialisation de mot de passe.</p>
+            <h2>${msg("doForgotPassword")}</h2>
+            <p>${msg("emailInstruction")}</p>
         </div>
         <div class="notch-content__body">
             <form id="kc-reset-password-form" class="form" action="${url.loginAction}" method="post">
