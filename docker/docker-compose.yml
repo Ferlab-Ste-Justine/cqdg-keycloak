@@ -17,8 +17,8 @@ services:
       - ../cqdg-keycloak-themes/src/main/resources/theme/cqdg:/opt/jboss/keycloak/themes/cqdg
       - ../cqdg-keycloak-themes/src/main/resources/theme/cqdg-admin:/opt/jboss/keycloak/themes/cqdg-admin
       - ../cqdg-keycloak-themes/src/main/resources/theme/main:/opt/jboss/keycloak/themes/main
-      - ./standalone.xml:/opt/jboss/keycloak/standalone/configuration/standalone.xml
-      - ./standalone-ha.xml:/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml
+      - ../configurations/standalone.xml:/opt/jboss/keycloak/standalone/configuration/standalone.xml
+      - ../configurations/standalone-ha.xml:/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml
       - ../target/standalone/deployments:/opt/jboss/keycloak/standalone/deployments
     environment:
       DB_VENDOR: POSTGRES
