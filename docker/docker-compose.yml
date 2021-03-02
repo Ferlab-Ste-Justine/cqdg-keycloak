@@ -12,7 +12,7 @@ services:
     ports:
       - 5432:5432
   keycloak:
-    image: jboss/keycloak:12.0.1
+    image: jboss/keycloak:12.0.3
     volumes:
       - ../cqdg-keycloak-themes/src/main/resources/theme/cqdg:/opt/jboss/keycloak/themes/cqdg
       - ../cqdg-keycloak-themes/src/main/resources/theme/cqdg-admin:/opt/jboss/keycloak/themes/cqdg-admin
