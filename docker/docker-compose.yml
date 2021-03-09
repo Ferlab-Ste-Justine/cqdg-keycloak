@@ -12,14 +12,12 @@ services:
     ports:
       - 5432:5432
   keycloak:
-    image: jboss/keycloak:12.0.3
-    volumes:
-      - ../cqdg-keycloak-themes/src/main/resources/theme/cqdg:/opt/jboss/keycloak/themes/cqdg
-      - ../cqdg-keycloak-themes/src/main/resources/theme/cqdg-admin:/opt/jboss/keycloak/themes/cqdg-admin
-      - ../cqdg-keycloak-themes/src/main/resources/theme/main:/opt/jboss/keycloak/themes/main
-      - ../configurations/standalone.xml:/opt/jboss/keycloak/standalone/configuration/standalone.xml
-      - ../configurations/standalone-ha.xml:/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml
-      - ../target/standalone/deployments:/opt/jboss/keycloak/standalone/deployments
+    image: ferlabcrsj/cqdg-keycloak:45f8026f0c7fcd0dcdbb47e096f4cd1918bb85fa
+#    volumes:
+#      - ../cqdg-keycloak-themes/src/main/resources/theme/cqdg:/opt/jboss/keycloak/themes/cqdg
+#      - ../cqdg-keycloak-themes/src/main/resources/theme/cqdg-admin:/opt/jboss/keycloak/themes/cqdg-admin
+#      - ../cqdg-keycloak-themes/src/main/resources/theme/main:/opt/jboss/keycloak/themes/main
+#      - ../target/standalone/deployments:/opt/jboss/keycloak/standalone/deployments
     environment:
       DB_VENDOR: POSTGRES
       DB_ADDR: keycloak-postgres

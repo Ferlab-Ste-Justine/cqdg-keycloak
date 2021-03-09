@@ -1,0 +1,14 @@
+.vscode
+.idea
+.github
+.editorconfig
+.env.example
+.gitignore
+.travis.yml
+*.iml
+appveyor.yml
+icon.png
+LICENSE
+README.md
+target
+docker
