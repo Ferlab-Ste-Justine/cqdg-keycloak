@@ -50,22 +50,31 @@ public class FormUtils {
 
     public static List<FormMessage> validate(MultivaluedMap<String, String> formData){
         List<FormMessage> errors = new ArrayList<>();
-
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>> VALIDATE 1");
         String affiliation = formData.getFirst(FIELD_AFFILIATION);
         String title = formData.getFirst(FIELD_TITLE);
         String researchDomain = formData.getFirst(FIELD_RESEARCH_DOMAIN);
 
         if (Validation.isBlank(affiliation)) {
+
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>> VALIDATE 2");
             errors.add(new FormMessage(FIELD_AFFILIATION, MESSAGE_AFFILIATION_REQUIRED));
         }
 
         if (Validation.isBlank(title)) {
+
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>> VALIDATE 3");
             errors.add(new FormMessage(FIELD_TITLE, MESSAGE_TITLE_REQUIRED));
         }
 
         if (Validation.isBlank(researchDomain)) {
+
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>> VALIDATE 4");
             errors.add(new FormMessage(FIELD_RESEARCH_DOMAIN, MESSAGE_RESEARCH_DOMAIN_REQUIRED));
         }
+
+
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>> VALIDATION DONE");
 
         return errors;
     }
