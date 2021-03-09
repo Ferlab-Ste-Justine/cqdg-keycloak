@@ -130,6 +130,7 @@ public class LoginFlowFormsProvider extends FreeMarkerLoginFormsProvider {
             String orcidUrl = System.getenv("ORCID_URL");
             if(orcidUrl == null || orcidUrl.trim().length() == 0){
                 logger.error("ORCID_URL is not defined.  Please add it to your environment variables.");
+                return null;
             }
 
             orcidUrl = orcidUrl.endsWith("/") ? orcidUrl : orcidUrl.concat("/");
