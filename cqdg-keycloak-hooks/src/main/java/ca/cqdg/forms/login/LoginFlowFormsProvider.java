@@ -44,25 +44,17 @@ public class LoginFlowFormsProvider extends FreeMarkerLoginFormsProvider {
 
     @Override
     protected Response createResponse(LoginFormsPages page) {
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 1");
         Theme theme;
         try {
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 2");
             theme = this.getTheme();
         } catch (IOException var10) {
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> BOOOM");
             logger.error("Failed to create theme", var10);
             return Response.serverError().build();
         }
 
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 3");
         // Load referential data if not already loaded.
         loadReferentials();
 
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 4");
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> AFFILIATIONS : " + affiliations == null ? 0 : affiliations.size());
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> TITLES : " + titles == null ? 0 : titles.size());
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> DOMAINS : " + researchDomains == null ? 0 : researchDomains.size());
         attributes.put("affiliations", affiliations);
         attributes.put("titles", titles);
         attributes.put("researchDomains", researchDomains);
@@ -171,25 +163,19 @@ public class LoginFlowFormsProvider extends FreeMarkerLoginFormsProvider {
         return null;
     }
 
-    private void loadReferentials() {
+    private synchronized void loadReferentials() {
         //Populate the drop down lists based on the values defined in the theme's message_XX.properties
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 3A");
         if(affiliations == null || titles == null || researchDomains == null) {
             Theme theme;
             try{
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 3B");
                 theme = this.getTheme();
             }catch(Exception e){
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 3 BOOM");
                 logger.error("Failed to retrieve theme", e);
                 return;
             }
 
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 3C");
             Locale locale = this.session.getContext().resolveLocale(this.user);
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 3D");
             Properties messagesBundle = this.handleThemeResources(theme, locale);
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 3E");
 
             affiliations = new TreeMap<>();
             titles = new TreeMap<>();
