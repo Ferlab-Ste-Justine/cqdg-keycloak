@@ -164,9 +164,9 @@ public class LoginFlowFormsProvider extends FreeMarkerLoginFormsProvider {
         return null;
     }
 
-    private synchronized void loadReferentials() {
+    private void loadReferentials() {
         //Populate the drop down lists based on the values defined in the theme's message_XX.properties
-        if(affiliations == null || titles == null || researchDomains == null) {
+        if(affiliations == null || titles == null || researchDomains == null || affiliations.size() == 0 || titles.size() == 0 || researchDomains.size() == 0) {
             Theme theme;
             try{
                 theme = this.getTheme();

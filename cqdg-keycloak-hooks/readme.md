@@ -30,6 +30,8 @@ Build (mvn clean package) the cqdg-keycloak-hooks project and copy target/cqdg-k
 * Configure the "Custom Review Profile": click "Actions -> Config" and set "Update Profile on First Login" to "ON".
 * Go to the "Identity Providers" menu of the left navigation and edit the Google and Orcid providers to set the "First Login Flow" to "CQDG First Login Flow"
 * Save.
+* Go to the CQDG Realm Settings
+* Select the Login tab and activate "Email as username"
 
 
 Development
