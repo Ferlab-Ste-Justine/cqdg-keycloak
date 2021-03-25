@@ -58,6 +58,15 @@ p, h1, h2, h3, h4, h5, h6 {
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600; }
 
+a.link {
+  color: #0075A2;
+  text-decoration: underline; }
+  a.link.small {
+    font-size: 1.2rem; }
+  a.link:hover {
+    color: #0075A2;
+    text-decoration: none; }
+
 .header {
   width: 100%;
   padding: 1.6rem;
@@ -82,7 +91,7 @@ h1, h2, h3, h4, h5, h6 {
       background: #F8F9FC; }
       .header__nav .menu-item-icon {
         margin-right: .8rem; }
-      .header__nav .menu-item:hover {
+      .header__nav .menu-item:hover, .header__nav .menu-item:focus-visible {
         color: #18486B;
         background-color: #fff;
         border-color: #D8E1EB; }
@@ -106,19 +115,23 @@ h1, h2, h3, h4, h5, h6 {
       height: 1.9em; }
     .header__actions .login, .header__actions .logout {
       display: flex;
-      align-items: center; }
+      align-items: center;
+      padding: .5rem .8rem; }
       .header__actions .login .icon, .header__actions .logout .icon {
         margin-right: .5rem; }
     .header__actions .link {
       font-size: 1.2rem;
       padding: 0;
       margin-right: 1rem;
-      color: #486F90; }
+      color: #486F90;
+      text-decoration: none; }
       .header__actions .link--icon {
         margin-left: .5rem; }
       .header__actions .link:not([disable]):hover {
         text-decoration: underline;
         color: #486F90; }
+      .header__actions .link:focus-visible {
+        color: #008FC7; }
 
 .locale {
   padding: 0;
@@ -218,15 +231,19 @@ h1, h2, h3, h4, h5, h6 {
   fill: var(--component-border); }
 
 /* hover type */
-.card--notched-hovered {
-  --component-border: #91dcf8;
+.card--notched.card--notched-hovered {
   -webkit-filter: drop-shadow(0px 6px 12px rgba(0, 174, 239, 0.2));
   filter: drop-shadow(0px 6px 12px rgba(0, 174, 239, 0.2)); }
+  .card--notched.card--notched-hovered > * {
+    border: none; }
+  .card--notched.card--notched-hovered .notch__border {
+    display: none; }
 
-.card--notched-hover:hover {
+.card--notched-hover:hover, .card--notched-hover:focus, a:focus-visible .card--notched-hover {
   --component-border: #91dcf8;
   -webkit-filter: drop-shadow(0px 6px 12px rgba(0, 174, 239, 0.2));
-  filter: drop-shadow(0px 6px 12px rgba(0, 174, 239, 0.2)); }
+  filter: drop-shadow(0px 6px 12px rgba(0, 174, 239, 0.2));
+  outline: none; }
 
 /* header type */
 .card--notched-header {
