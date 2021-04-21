@@ -25,7 +25,7 @@
                         <#if realm.password && social.providers??>
                             <#list social.providers as p>
                                 <div class="form__group">
-                                    <a class="social-link" href="${p.loginUrl}">
+                                    <a class="social-link" href="${p.loginUrl}&prompt=select_account">
                                         <@fragments.idpButton type='${p.alias}' />
                                     </a>
                                 </div>
