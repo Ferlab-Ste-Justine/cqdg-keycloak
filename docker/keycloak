@@ -14,7 +14,7 @@ start(){
   fi
 
   (cd ../; ./build.sh)
-  docker-compose up
+  docker-compose -p cqdg-keycloak up -d
 }
 
 stop(){
