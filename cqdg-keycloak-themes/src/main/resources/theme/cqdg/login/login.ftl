@@ -17,7 +17,6 @@
                 <@fragments.error title='${msg("delegationFailedHeader")}' />
                 <@fragments.success />
                 <h2>${msg("login")}</h2>
-                <p>${msg("loginHeadLine")}</p>
             </div>
             <div class="notch-content__body">
                 <#if realm.password>
@@ -25,7 +24,7 @@
                         <#if realm.password && social.providers??>
                             <#list social.providers as p>
                                 <div class="form__group">
-                                    <a class="social-link" href="${p.loginUrl}&prompt=select_account">
+                                    <a class="social-link" href="${p.loginUrl}">
                                         <@fragments.idpButton type='${p.alias}' />
                                     </a>
                                 </div>

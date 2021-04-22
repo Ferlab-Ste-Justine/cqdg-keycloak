@@ -47,7 +47,6 @@
                 <div class="header__nav">
                 </div>
                 <div class="header__actions">
-                    <div class="ant-divider ant-divider-vertical separator" role="separator"></div>
                     <a href="https://docs.qa.cqdg.ferlab.bio/" target="_blank" class="ant-btn ant-btn-link link">
                         Documentation
                         <svg class="link--icon" fill="currentColor" height="10" viewBox="0 0 10 10" width="10" xmlns="http://www.w3.org/2000/svg">
