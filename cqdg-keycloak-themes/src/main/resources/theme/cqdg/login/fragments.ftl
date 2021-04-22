@@ -69,11 +69,6 @@
                     </div>
                 </div>
             </div>
-            <div class="text-container">
-                <h2>Le centre québécois de données génomiques</h2>
-                <h1>Portail de données</h1>
-                <p>Le Centre québécois de données génomiques est une plateforme d'harmonisation et de diffusion des données génomiques générées par les études cliniques et de recherche du Québec.</p>
-            </div>
         </div>
     </section>
 </#macro>
