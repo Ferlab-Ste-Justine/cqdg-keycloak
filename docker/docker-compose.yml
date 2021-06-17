@@ -31,6 +31,7 @@ services:
       DEBUG_PORT: '*:8787'
       ORCID_URL: 'https://sandbox.orcid.org'
       HOME_URL: 'http://localhost:3000'
+      DOCS_URL: 'http://localhost:3001'
     ports:
       - 8080:8080
       - 8787:8787
