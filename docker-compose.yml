@@ -1,0 +1,13 @@
+version: "3.5"
+services:
+  keycloak:
+    build: .
+    hostname: keycloak
+    ports:
+      - "8443:8443"
+    environment:
+            KEYCLOAK_USER: admin
+            KEYCLOAK_PASSWORD: password
+            KEYCLOAK_LOGLEVEL: DEBUG
+    volumes:
+            - ./:/opt/jboss/keycloak/standalone/deployments/
