@@ -1,5 +1,8 @@
 target
 *.iml
 .idea
-
-docker/postgres_data
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+.terraform
+.DS_Store

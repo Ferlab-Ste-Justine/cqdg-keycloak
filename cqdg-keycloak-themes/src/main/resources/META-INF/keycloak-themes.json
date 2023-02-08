@@ -1,9 +1,0 @@
-{
-  "themes": [{
-    "name" : "cqdg",
-    "types": [ "email", "login" ]
-  }, {
-    "name" : "cqdg-admin",
-    "types": [ "admin", "account" ]
-  }]
-}
