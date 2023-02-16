@@ -19,7 +19,7 @@ const Login = memo(
   ({ kcContext, ...props }: { kcContext: KcContext_Login } & KcProps) => {
     const { social, realm, locale } = kcContext;
 
-    const { msg } = useKcMessage();
+    const { advancedMsg } = useKcMessage();
     const { kcLanguageTag, setKcLanguageTag } = useKcLanguageTag();
 
     const socialImageMapping: any = {
@@ -60,7 +60,7 @@ const Login = memo(
             </div>
             <div className={styles.loginFormContent}>
               <Title level={4} className={styles.loginTitle}>
-                {msg("loginTitle")}
+                {advancedMsg("login_title")}
               </Title>
               <div
                 id="kc-form"
@@ -86,7 +86,7 @@ const Login = memo(
                         <div className={styles.socialIcon}>
                           {socialImageMapping[p.alias]}
                         </div>
-                        <span className="sr-only">{msg("loginTitle")}</span>
+                        <span className="sr-only">{advancedMsg("login_title")}</span>
                         <Text>{p.displayName}</Text>
                       </a>
                     ))}
