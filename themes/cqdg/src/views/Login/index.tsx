@@ -3,7 +3,7 @@ import { assert, KcProps, useKcLanguageTag, useKcMessage } from "keycloakify";
 import { KcContext } from "keycloak/kcContext";
 import CQDGLogoFull from "assets/CQDGLogoFull";
 import SideImageLayout from "layout/SideImage";
-import MainSideImage from "assets/mainSideImage.png";
+import MainSideImage from "assets/side-img-svg.svg";
 import GoogleIcon from "assets/GoogleIcon";
 import OrcidIcon from "assets/ORCIDIcon";
 import { Button, Space, Typography } from "antd";
