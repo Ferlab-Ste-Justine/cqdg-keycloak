@@ -5,7 +5,7 @@
   height: 100vh;
   overflow-y: auto;
   min-width: 1024;
-  background-color: $gray-8;
+  background-color: $gray-2;
 
   .contentWrapper {
     height: 100%;
@@ -67,10 +67,10 @@
       background-position: center;
       background: linear-gradient(
           0deg,
-          transparentize($gray-8, 0.1),
-          transparentize($gray-8, 0.1)
+          transparentize($gray-2, 0.1),
+          transparentize($gray-2, 0.1)
         ),
-        url(../../assets/mainSideImage.jpg) bottom;
+        url(../../assets/mainSideImage.png) bottom;
       background-size: cover;
     }
   }

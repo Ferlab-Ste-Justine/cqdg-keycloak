@@ -1,12 +1,12 @@
 import { memo } from "react";
-import type { KcProps } from "keycloakify";
+import { assert, KcProps, useKcLanguageTag, useKcMessage } from "keycloakify";
 import { KcContext } from "keycloak/kcContext";
-import IncludeLogo from "assets/IncludeLogo";
+import CQDGLogoFull from "assets/CQDGLogoFull";
 import SideImageLayout from "layout/SideImage";
-import MainSideImage from "assets/mainSideImage.jpg";
+import MainSideImage from "assets/mainSideImage.png";
 import GoogleIcon from "assets/GoogleIcon";
 import OrcidIcon from "assets/ORCIDIcon";
-import { Space, Typography } from "antd";
+import { Button, Space, Typography } from "antd";
 import cx from "classnames";
 
 import styles from "./index.module.scss";
@@ -17,7 +17,10 @@ const { Title, Text } = Typography;
 
 const Login = memo(
   ({ kcContext, ...props }: { kcContext: KcContext_Login } & KcProps) => {
-    const { social, realm } = kcContext;
+    const { social, realm, locale } = kcContext;
+
+    const { msg } = useKcMessage();
+    const { kcLanguageTag, setKcLanguageTag } = useKcLanguageTag();
 
     const socialImageMapping: any = {
       google: <GoogleIcon />,
@@ -26,54 +29,74 @@ const Login = memo(
 
     return (
       <SideImageLayout sideImgSrc={MainSideImage} className={styles.loginPage}>
-        <div className={styles.loginCard}>
-          <div className={styles.logoContainer}>
-            <a href="https://portal.includedcc.org">
-              <IncludeLogo />
-            </a>
-          </div>
-          <a href="https://portal.includedcc.org">
-            <Title level={5} className={styles.realm}>
-              INCLUDE DCC
-            </Title>
-          </a>
-          <div className={styles.loginFormContent}>
-            <Title level={3} className={styles.loginTitle}>
-              Log in with
-            </Title>
-            <div
-              id="kc-form"
-              className={cx(
-                realm.password &&
-                  social.providers !== undefined &&
-                  props.kcContentWrapperClass
-              )}
-            >
-              {realm.password && social.providers !== undefined && (
-                <Space
-                  id="kc-social-providers"
-                  className={styles.socialProviders}
-                  direction="vertical"
-                  size={16}
-                >
-                  {social.providers.map((p) => (
-                    <a
-                      href={p.loginUrl}
-                      id={`social-${p.alias}`}
-                      className={cx(styles.socialLoginBtn, p.providerId)}
+        <div className={styles.loginContainer}>
+          <div className={styles.switchLang}>
+            {realm.internationalizationEnabled &&
+                (assert(locale !== undefined), true) &&
+                locale.supported.length > 1 && (
+                    <div
+                      id="kc-locale-wrapper"
+                      className={cx(props.kcLocaleWrapperClass)}
                     >
-                      <div className={styles.socialIcon}>
-                        {socialImageMapping[p.alias]}
+                      <div className="kc-dropdown" id="kc-locale-dropdown">
+                          {locale.supported.map(({ languageTag }) => (
+                              <Button
+                                id={languageTag}
+                                hidden={languageTag === kcLanguageTag}
+                                onClick={() => setKcLanguageTag(languageTag)}
+                                type="primary"
+                              >
+                                {languageTag.toUpperCase()}
+                              </Button>
+                              
+                          ))}
                       </div>
-                      <span className="sr-only">Log in with</span>
-                      <Text>{p.displayName}</Text>
-                    </a>
-                  ))}
-                </Space>
-              )}
+                    </div>
+                )}
+          </div>
+          <div className={styles.loginCard}>
+            <div className={styles.logoContainer}>
+              <CQDGLogoFull className={styles.logo} />
+            </div>
+            <div className={styles.loginFormContent}>
+              <Title level={4} className={styles.loginTitle}>
+                {msg("loginTitle")}
+              </Title>
+              <div
+                id="kc-form"
+                className={cx(
+                  realm.password &&
+                    social.providers !== undefined &&
+                    props.kcContentWrapperClass
+                )}
+              >
+                {realm.password && social.providers !== undefined && (
+                  <Space
+                    id="kc-social-providers"
+                    className={styles.socialProviders}
+                    direction="vertical"
+                    size={16}
+                  >
+                    {social.providers.map((p) => (
+                      <a
+                        href={p.loginUrl}
+                        id={`social-${p.alias}`}
+                        className={cx(styles.socialLoginBtn, p.providerId)}
+                      >
+                        <div className={styles.socialIcon}>
+                          {socialImageMapping[p.alias]}
+                        </div>
+                        <span className="sr-only">{msg("loginTitle")}</span>
+                        <Text>{p.displayName}</Text>
+                      </a>
+                    ))}
+                  </Space>
+                )}
+              </div>
             </div>
           </div>
         </div>
+        
       </SideImageLayout>
     );
   }
