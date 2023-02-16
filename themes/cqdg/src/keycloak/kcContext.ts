@@ -31,7 +31,6 @@ export const { kcContext } = getKcContext<
     }
 >({
   /* Uncomment to test outside of keycloak, ⚠️ don't forget to run 'npm run keycloak' at least once */
-  // "mockPageId": "terms.ftl",
   // mockPageId: "login-update-profile.ftl",
   // mockPageId: "login.ftl",
   /**
@@ -59,7 +58,7 @@ export const { kcContext } = getKcContext<
     },
     {
       pageId: "login-update-profile.ftl",
-      redirectUrl: "https://portal-qa.includedcc.org/dashboard",
+      redirectUrl: "https://portalv2.qa.cqdg.ferlab.bio",
       userProfile: {
         editUsernameAllowed: false,
         // era_commons_id: "1234",
