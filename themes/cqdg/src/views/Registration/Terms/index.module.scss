@@ -1,3 +1,5 @@
+@import "../../../style/themes/cqdg/dist/colors";
+
 .termsAndConditionsWrapper {
   width: 100%;
 
@@ -60,4 +62,10 @@
     margin-top: 24px;
     justify-content: end;
   }
+
+  .tooltipIcon {
+    margin-left: 0.5rem;
+    color: $gray-7;
+  }
 }
+

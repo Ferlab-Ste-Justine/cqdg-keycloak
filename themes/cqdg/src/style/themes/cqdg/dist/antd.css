@@ -23657,11 +23657,11 @@ tr.ant-table-expanded-row .ant-descriptions-view table {
   min-width: 30px;
   min-height: 32px;
   padding: 6px 8px;
-  color: #fff;
+  color: #18486B;
   text-align: left;
   text-decoration: none;
   word-wrap: break-word;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: #FFC431;
   border-radius: 2px;
   box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
 }
@@ -23676,7 +23676,7 @@ tr.ant-table-expanded-row .ant-descriptions-view table {
   pointer-events: none;
 }
 .ant-tooltip-arrow-content {
-  --antd-arrow-background-color: linear-gradient(to right bottom, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.75));
+  --antd-arrow-background-color: linear-gradient(to right bottom, rgba(255, 196, 49, 0.9), #FFC431);
   position: absolute;
   top: 0;
   right: 0;
@@ -26282,4 +26282,12 @@ div.ant-typography-edit-content.ant-typography-rtl {
 }
 .ant-form-item-label > label {
   font-weight: 600;
+}
+.ant-tooltip-inner {
+  background-color: gold;
+  color: #18486B;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
 }
