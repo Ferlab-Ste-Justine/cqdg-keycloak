@@ -2,7 +2,7 @@ import { memo } from "react";
 import type { KcProps } from "keycloakify";
 import { KcContext } from "keycloak/kcContext";
 import SideImageLayout from "layout/SideImage";
-import MainSideImage from "assets/mainSideImage.png";
+import MainSideImage from "assets/side-img-svg.svg";
 import TermsStep from "./Terms";
 import ScrollContent from "@ferlab/ui/core/layout/ScrollContent";
 import SurveyStep from "./Survey";
