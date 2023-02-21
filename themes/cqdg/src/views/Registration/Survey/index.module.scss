@@ -26,56 +26,19 @@
     line-height: 20px;
   }
 
-  h3.subSectionTitle {
-    margin-bottom: 24px;
-
-    &:not(:first-child) {
-      margin-top: 8px;
-    }
-  }
-
   .allFieldRequiredNotice {
     margin-bottom: 24px;
     display: block;
-  }
-
-  .dynamicField {
-    &:not(.inner) {
-      margin-top: -18px;
-    }
-
-    &.inner {
-      margin-bottom: 0;
-    }
-
-    &:not(.withCustomHelp) {
-      div[class$="-item-label"] {
-        padding-bottom: 4px;
-      }
-    }
-
-    label {
-      font-size: 12px;
-    }
-  }
-
-  .fullNameField {
-    margin-bottom: 8px;
   }
 
   .affiliationField {
     margin-bottom: 0;
   }
 
-  .haveAUserID,
   .noAffiliationField,
   .affiliationField,
   .researchAreaField {
     padding-top: 8px;
-  }
-
-  .iconSuffix {
-    color: $gray-6;
   }
 
   .registrationFooter {

@@ -1,6 +1,7 @@
 export type initialState = {
   userInfo: TUser | null;
   currentStep: number;
+  hasError: boolean;
 };
 
 export type TUser = {
@@ -13,7 +14,7 @@ export type TUser = {
   external_individual_email?: string;
   roles?: string[];
   affiliation?: string;
-  research_area?: string;
+  research_areas?: string[];
   portal_usages?: string[];
   creation_date?: Date;
   updated_date?: Date;

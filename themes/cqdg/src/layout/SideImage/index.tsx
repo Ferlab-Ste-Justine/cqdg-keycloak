@@ -5,7 +5,6 @@ import { Row } from "antd";
 import "./index.scss";
 
 interface OwnProps {
-  logoSrc?: string;
   sideImgSrc?: string;
   alignCenter?: boolean;
   theme?: "light" | "dark";
@@ -14,7 +13,6 @@ interface OwnProps {
 }
 
 const SideImageLayout = ({
-  logoSrc,
   sideImgSrc,
   alignCenter = true,
   theme = "dark",
@@ -22,11 +20,6 @@ const SideImageLayout = ({
   className = " ",
 }: OwnProps) => (
   <div className={cx("sideImagePageContainer", className)}>
-    {logoSrc && (
-      <a href="https://portal.includedcc.org">
-        <img className={"logoImage"} src={logoSrc} alt="Include Logo Logo" />
-      </a>
-    )}
     <Row className={"contentWrapper"}>
       <div
         className={"sideImageContainer"}
