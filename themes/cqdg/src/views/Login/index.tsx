@@ -27,6 +27,8 @@ const Login = memo(
       orcid: <OrcidIcon />,
     };
 
+    const socialProviders = social.providers || [];
+
     return (
       <SideImageLayout sideImgSrc={MainSideImage} className={styles.loginPage}>
         <div className={styles.loginContainer}>
@@ -66,22 +68,22 @@ const Login = memo(
                 id="kc-form"
                 className={cx(
                   realm.password &&
-                    social.providers !== undefined &&
                     props.kcContentWrapperClass
                 )}
               >
-                {realm.password && social.providers !== undefined && (
+                {realm.password && (
                   <Space
                     id="kc-social-providers"
                     className={styles.socialProviders}
                     direction="vertical"
                     size={16}
                   >
-                    {social.providers.map((p) => (
+                    {socialProviders.map((p) => (
                       <a
                         href={p.loginUrl}
                         id={`social-${p.alias}`}
                         className={cx(styles.socialLoginBtn, p.providerId)}
+                        key={p.providerId}
                       >
                         <div className={styles.socialIcon}>
                           {socialImageMapping[p.alias]}
