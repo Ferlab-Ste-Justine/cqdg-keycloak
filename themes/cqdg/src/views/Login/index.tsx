@@ -44,6 +44,7 @@ const Login = memo(
                           {locale.supported.map(({ languageTag }) => (
                               <Button
                                 id={languageTag}
+                                key={languageTag}
                                 hidden={languageTag === kcLanguageTag}
                                 onClick={() => setKcLanguageTag(languageTag)}
                                 type="primary"
