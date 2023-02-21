@@ -9,6 +9,7 @@ import SurveyStep from "./Survey";
 import { useRegistrationFlow } from "store/registrationFlow";
 
 import styles from "./index.module.scss";
+import { ErrorContainer } from "views/Error";
 
 export type KcContext_LoginUpdateProfile = Extract<
   KcContext,
@@ -20,9 +21,9 @@ const Registration = memo(
     kcContext,
     ...props
   }: { kcContext: KcContext_LoginUpdateProfile } & KcProps) => {
-    const { currentStep } = useRegistrationFlow();
+    const { currentStep, hasError } = useRegistrationFlow();
 
-    return (
+    const displayStep = () => (
       <SideImageLayout
         sideImgSrc={MainSideImage}
         theme="light"
@@ -39,6 +40,17 @@ const Registration = memo(
         </ScrollContent>
       </SideImageLayout>
     );
+    
+    const displayError = () => (
+      <SideImageLayout
+        sideImgSrc={MainSideImage}
+        theme="light"
+      >
+        <ErrorContainer redirectUrl={kcContext.redirectUrl}/>
+      </SideImageLayout>
+    );
+
+    return !hasError ? displayStep() : displayError();
   }
 );
 

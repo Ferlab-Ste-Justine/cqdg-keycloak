@@ -17,7 +17,7 @@ export const { kcContext } = getKcContext<
         affiliation?: string;
         portal_usages?: string[];
         roles?: string[];
-        research_area?: string;
+        research_areas?: string[];
         accepted_terms: boolean;
         understand_disclaimer: boolean;
         commercial_use_reason?: string;
@@ -29,10 +29,14 @@ export const { kcContext } = getKcContext<
   | {
       pageId: "login.ftl";
     }
+  | {
+      pageId: "error.ftl";
+    }
 >({
   /* Uncomment to test outside of keycloak, ⚠️ don't forget to run 'npm run keycloak' at least once */
   // mockPageId: "login-update-profile.ftl",
   // mockPageId: "login.ftl",
+  // mockPageId: "error.ftl",
   /**
    * Customize the simulated kcContext that will let us
    * dev the page outside keycloak (with auto-reload)
@@ -61,22 +65,17 @@ export const { kcContext } = getKcContext<
       redirectUrl: "https://portalv2.qa.cqdg.ferlab.bio",
       userProfile: {
         editUsernameAllowed: false,
-        // era_commons_id: "1234",
-        nih_ned_id: "",
-        external_individual_fullname: "Jean Jean",
-        external_individual_email: "",
-        era_commons_id: "CASOLI",
-        // affiliation: "CHUSJ",
-        portal_usages: ["Commercial purposes", "My custom usage"],
-        commercial_use_reason: "For fun",
-        roles: ["Tool or Algorithm Developer", "Clinician"],
-        research_area: "",
+        roles: ["bioinformatician", "clinician"],
+        research_areas: ["aging", "other"],
         affiliation: "CHUSJ",
         accepted_terms: false,
         understand_disclaimer: false,
         completed_registration: false
       }
     },
+    {
+      pageId: "error.ftl",
+    }
   ],
 });
 

@@ -1,11 +1,11 @@
 import { memo } from "react";
 
 import { Info } from "keycloakify/lib/components/Info";
-import { Error } from "keycloakify/lib/components/Error";
 import { KcApp as KcAppBase } from "keycloakify/lib/components/KcApp";
 import "./kcMessagesExtension";
 import type { KcContext } from "./kcContext";
 import { KcProps } from "keycloakify/lib/components/KcProps";
+import { Error } from "views/Error";
 import Login from "views/Login";
 import Registration from "views/Registration";
 

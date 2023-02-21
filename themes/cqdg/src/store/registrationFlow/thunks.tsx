@@ -3,7 +3,6 @@ import {RootState} from "store/types";
 import {TUser} from "./types";
 import api from "axios";
 import {AxiosError} from "axios";
-import {notification} from "antd";
 import qs from 'qs'
 
 const userLogin = createAsyncThunk<void,
@@ -24,7 +23,7 @@ const userLogin = createAsyncThunk<void,
         },
         data: qs.stringify(args.userInfo, {arrayFormat: 'repeat'}),
     }).catch((err: Error | AxiosError) => {
-        //XHR forced to follow redirect 302, which results at the end in a CORS error.Only way to catch this, its to verify if respsones is undefined.
+        //XHR forced to follow redirect 302, which results at the end in a CORS error.Only way to catch this, its to verify if response is undefined.
         if (api.isAxiosError(err)) {
             if (!err.response) {
                 window.location.href = args.redirectUrl;
@@ -32,10 +31,7 @@ const userLogin = createAsyncThunk<void,
             }
         }
 
-        notification.error({
-            message: "Error",
-            description: "Unable to create complete your profile",
-        });
+        thunkAPI.dispatch(userLogin.rejected(new Error(err.message), err.message, args));
     });
 });
 export {userLogin};

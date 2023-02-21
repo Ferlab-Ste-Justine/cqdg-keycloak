@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "store/registrationFlow/types";
+import { userLogin } from "./thunks";
 
 const INITIAL_STEP = 1;
 
 export const RegistrationFlowState: initialState = {
   userInfo: null,
   currentStep: INITIAL_STEP,
+  hasError: false
 };
 
 const registrationFlowSlice = createSlice({
@@ -28,6 +30,14 @@ const registrationFlowSlice = createSlice({
         understand_disclaimer: true,
       };
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(userLogin.rejected, (state, action) => {
+      state.hasError = true;
+    });
+    builder.addCase(userLogin.pending, (state, action) => {
+      state.hasError = false;
+    });
   },
 });
 
