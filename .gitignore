@@ -6,3 +6,7 @@ terraform.tfstate
 terraform.tfstate.backup
 .terraform
 .DS_Store
+standalone.xml.deployed
+standalone-ha.xml.deployed
+pom.xml.deployed
+postgres_data/

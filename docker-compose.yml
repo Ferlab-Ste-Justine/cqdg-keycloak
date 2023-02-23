@@ -1,13 +1,34 @@
 version: "3.5"
 services:
+  keycloak-postgres:
+    image: postgres
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
   keycloak:
     build: .
     hostname: keycloak
     ports:
-      - "8443:8443"
+      - 8080:8080
+      - 8787:8787
+      - 9990:9990
+      - 8443:8443
     environment:
-            KEYCLOAK_USER: admin
-            KEYCLOAK_PASSWORD: password
-            KEYCLOAK_LOGLEVEL: DEBUG
-    volumes:
-            - ./:/opt/jboss/keycloak/standalone/deployments/
+      DB_VENDOR: POSTGRES
+      DB_ADDR: keycloak-postgres
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_SCHEMA: public
+      DB_PASSWORD: password
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: password
+      DEBUG: 'true'
+      DEBUG_PORT: '*:8787'
+      ORCID_URL: 'https://sandbox.orcid.org'
+    depends_on:
+      - keycloak-postgres
