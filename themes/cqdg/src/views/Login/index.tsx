@@ -1,5 +1,5 @@
-import { memo } from "react";
-import { assert, KcProps, useKcLanguageTag, useKcMessage } from "keycloakify";
+import { memo, useEffect } from "react";
+import { assert, getBestMatchAmongKcLanguageTag, KcProps, useKcLanguageTag, useKcMessage } from "keycloakify";
 import { KcContext } from "keycloak/kcContext";
 import CQDGLogoFull from "assets/CQDGLogoFull";
 import SideImageLayout from "layout/SideImage";
@@ -21,6 +21,22 @@ const Login = memo(
 
     const { advancedMsg } = useKcMessage();
     const { kcLanguageTag, setKcLanguageTag } = useKcLanguageTag();
+
+    useEffect(() => {
+      if (!realm.internationalizationEnabled) {
+        return;
+      }
+  
+      assert(locale !== undefined);
+  
+      if (kcLanguageTag === getBestMatchAmongKcLanguageTag(locale.current)) {
+        return;
+      }
+  
+      window.location.href = locale.supported.find(
+        ({ languageTag }) => languageTag === kcLanguageTag
+      )!.url;
+    }, [kcLanguageTag, locale, realm.internationalizationEnabled]);
 
     const socialImageMapping: any = {
       google: <GoogleIcon />,
