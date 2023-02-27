@@ -57,7 +57,7 @@ const Login = memo(
                                 id={languageTag}
                                 key={languageTag}
                                 hidden={languageTag === kcLanguageTag}
-                                onClick={() => { setKcLanguageTag(languageTag) }}
+                                onClick={() => setKcLanguageTag(languageTag)}
                                 type="primary"
                               >
                                 {languageTag.toUpperCase()}
