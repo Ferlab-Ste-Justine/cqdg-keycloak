@@ -61,10 +61,7 @@ const SurveyStep = ({
   const researchAreaSortFunction = (area1: string, area2: string) => advancedMsgStr(researchAreaMessagePrefix + area1).localeCompare(advancedMsgStr(researchAreaMessagePrefix + area2));
 
   const validateMessages = {
-    required: "This field is required",
-    string: {
-      min: `\${min} characters minimum`,
-    },
+    required: advancedMsgStr('required_field_error'),
   };
 
   return (

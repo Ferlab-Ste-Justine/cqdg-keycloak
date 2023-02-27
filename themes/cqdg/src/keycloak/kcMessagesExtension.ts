@@ -57,7 +57,8 @@ Object.assign(
         "back": "Back",
         "error_title": "Unable to complete request",
         "error_message": "Our servers are currently experiencing technical difficulties and are unable to process your request.",
-        "try_again": "Try again"
+        "try_again": "Try again",
+        "required_field_error": "This field is required"
     }
 );
 
@@ -118,6 +119,7 @@ Object.assign(
         "back": "Précédent",
         "error_title": "Impossible de terminer la demande",
         "error_message": "Nos serveurs rencontrent actuellement des difficultés techniques et ne sont pas en mesure de traiter votre demande.",
-        "try_again": "Réessayer"
+        "try_again": "Réessayer",
+        "required_field_error": "Ce champ est obligatoire"
     }
 );
