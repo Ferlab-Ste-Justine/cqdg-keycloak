@@ -24,9 +24,13 @@ const Login = memo(
     const { advancedMsg } = useKcMessage();
     const { kcLanguageTag, setKcLanguageTag } = useKcLanguageTag();
 
+    const localeFromUrl = getBestMatchAmongKcLanguageTag(new URLSearchParams(window.location.search).get(LOCALE_PARAM) || 'en');
+
     useEffect(() => {
-      const localeFromUrl = getBestMatchAmongKcLanguageTag(new URLSearchParams(window.location.search).get(LOCALE_PARAM) || 'en');
-      setKcLanguageTag(localeFromUrl);
+      if(localeFromUrl !== kcLanguageTag) {
+        setKcLanguageTag(localeFromUrl);
+      }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [setKcLanguageTag]);
 
     const socialImageMapping: any = {
@@ -53,11 +57,7 @@ const Login = memo(
                                 id={languageTag}
                                 key={languageTag}
                                 hidden={languageTag === kcLanguageTag}
-                                onClick={() => {
-                                  const oldLang = kcLanguageTag
-                                  setKcLanguageTag(languageTag);
-                                  window.location.replace(window.location.href.replace(LOCALE_PARAM + '=' + oldLang, LOCALE_PARAM + '=' + languageTag));
-                                }}
+                                onClick={() => { setKcLanguageTag(languageTag) }}
                                 type="primary"
                               >
                                 {languageTag.toUpperCase()}
