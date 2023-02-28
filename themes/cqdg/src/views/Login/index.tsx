@@ -30,8 +30,7 @@ const Login = memo(
       if(localeFromUrl !== kcLanguageTag) {
         setKcLanguageTag(localeFromUrl);
       }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [setKcLanguageTag]);
+    }, [kcLanguageTag, localeFromUrl, setKcLanguageTag]);
 
     const socialImageMapping: any = {
       google: <GoogleIcon />,
@@ -57,7 +56,11 @@ const Login = memo(
                                 id={languageTag}
                                 key={languageTag}
                                 hidden={languageTag === kcLanguageTag}
-                                onClick={() => setKcLanguageTag(languageTag)}
+                                onClick={() => {
+                                  // eslint-disable-next-line no-restricted-globals
+                                  history.pushState(history.state, 'CQDG', window.location.href.replace(LOCALE_PARAM + '=' + kcLanguageTag, LOCALE_PARAM + '=' + languageTag));
+                                  setKcLanguageTag(languageTag);
+                                }}
                                 type="primary"
                               >
                                 {languageTag.toUpperCase()}
