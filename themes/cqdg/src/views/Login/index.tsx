@@ -1,5 +1,5 @@
-import { memo } from "react";
-import { assert, KcProps, useKcLanguageTag, useKcMessage } from "keycloakify";
+import { memo, useEffect } from "react";
+import { assert, getBestMatchAmongKcLanguageTag, KcProps, useKcLanguageTag, useKcMessage } from "keycloakify";
 import { KcContext } from "keycloak/kcContext";
 import CQDGLogoFull from "assets/CQDGLogoFull";
 import SideImageLayout from "layout/SideImage";
@@ -15,12 +15,22 @@ type KcContext_Login = Extract<KcContext, { pageId: "login.ftl" }>;
 
 const { Title, Text } = Typography;
 
+const LOCALE_PARAM = 'ui_locales';
+
 const Login = memo(
   ({ kcContext, ...props }: { kcContext: KcContext_Login } & KcProps) => {
     const { social, realm, locale } = kcContext;
 
     const { advancedMsg } = useKcMessage();
     const { kcLanguageTag, setKcLanguageTag } = useKcLanguageTag();
+
+    const localeFromUrl = getBestMatchAmongKcLanguageTag(new URLSearchParams(window.location.search).get(LOCALE_PARAM) || 'en');
+
+    useEffect(() => {
+      if(localeFromUrl !== kcLanguageTag) {
+        setKcLanguageTag(localeFromUrl);
+      }
+    }, [kcLanguageTag, localeFromUrl, setKcLanguageTag]);
 
     const socialImageMapping: any = {
       google: <GoogleIcon />,
@@ -46,7 +56,11 @@ const Login = memo(
                                 id={languageTag}
                                 key={languageTag}
                                 hidden={languageTag === kcLanguageTag}
-                                onClick={() => setKcLanguageTag(languageTag)}
+                                onClick={() => {
+                                  // eslint-disable-next-line no-restricted-globals
+                                  history.pushState(history.state, 'CQDG', window.location.href.replace(LOCALE_PARAM + '=' + kcLanguageTag, LOCALE_PARAM + '=' + languageTag));
+                                  setKcLanguageTag(languageTag);
+                                }}
                                 type="primary"
                               >
                                 {languageTag.toUpperCase()}
