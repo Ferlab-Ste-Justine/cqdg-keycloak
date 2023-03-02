@@ -140,7 +140,7 @@ const SurveyStep = ({
               label={advancedMsg("survey_form_affiliation_label")}
             >
               <span className={styles.help}>
-                Provide institutional or organizational affiliation
+                {advancedMsg("survey_form_affiliation_help")}
               </span>
               <Form.Item
                 name={FORM_FIELDS.AFFILIATION}
