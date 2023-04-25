@@ -3,6 +3,7 @@ import { Button, Checkbox, Form, Input, Space, Typography } from "antd";
 import cx from "classnames";
 import { useDispatch } from "react-redux";
 import { useKcMessage } from "keycloakify";
+import useAxios from 'axios-hooks'
 import { registrationFlowActions } from "store/registrationFlow/slice";
 import { userLogin } from "store/registrationFlow/thunks";
 import { KcContext_LoginUpdateProfile } from "..";
@@ -13,39 +14,26 @@ enum FORM_FIELDS {
   ROLES = "roles",
   AFFILIATION = "affiliation",
   NO_AFFILIATION = "no_affiliation",
-  RESEARCH_AREAS = "reasearch_areas",
+  RESEARCH_DOMAINS = "research_domains",
+}
+
+interface IOption {
+  label: string;
+  value: string;
+}
+
+interface IUserOptions {
+  roleOptions: IOption[];
+  researchDomainOptions: IOption[];
 }
 
 const { Text } = Typography;
 
-const OTHER_KEY = 'other';
-const NOT_APPLICABLE_KEY = 'not_applicable';
-
 const roleMessagePrefix = "survey_form_role_";
-const roleOptions = [
-  "researcher",
-  "clinician",
-  "representative",
-  "bioinformatician",
-  "governmental_employee",
-];
-
 const researchAreaMessagePrefix = "survey_form_research_area_";
-const researchAreaOptions = [
-  "aging",
-  "bioinformatics",
-  "birth_defects",
-  "cancer",
-  "circulatory_repiratory_health",
-  "general_health",
-  "infection_immunity",
-  "musculoskeletal_health_arthritis",
-  "neurodevelopmental_conditions",
-  "neurosciences_mental_health_addiction",
-  "nutrition_metabolism_diabetes",
-  "population_genomics",
-  "rare_diseases",
-];
+
+const REACT_APP_USERS_API_URL = process.env.REACT_APP_USERS_API_URL || 'https://users.qa.cqdg.ferlab.bio';
+
 const SurveyStep = ({
   kcContext,
 }: {
@@ -57,6 +45,12 @@ const SurveyStep = ({
   const { redirectUrl } = kcContext;
 
   const { advancedMsg, advancedMsgStr } = useKcMessage();
+
+  const [{ data }] = useAxios<IUserOptions>(
+      `${REACT_APP_USERS_API_URL}/userOptions`
+  )
+  const roleOptions = data?.roleOptions?.map(e => e.value) || [];
+  const researchDomainOptions = data?.researchDomainOptions?.map(e => e.value) || [];
 
   const researchAreaSortFunction = (area1: string, area2: string) => advancedMsgStr(researchAreaMessagePrefix + area1).localeCompare(advancedMsgStr(researchAreaMessagePrefix + area2));
 
@@ -82,8 +76,8 @@ const SurveyStep = ({
           value: kcContext.userProfile.affiliation ? false : undefined,
         },
         {
-          name: [FORM_FIELDS.RESEARCH_AREAS],
-          value: kcContext.userProfile.research_areas,
+          name: [FORM_FIELDS.RESEARCH_DOMAINS],
+          value: kcContext.userProfile.research_domains,
         },
       ]}
       onFinish={(values) => {
@@ -96,7 +90,7 @@ const SurveyStep = ({
               last_name: kcContext.userProfile.last_name,
               roles: values[FORM_FIELDS.ROLES],
               affiliation: values[FORM_FIELDS.AFFILIATION],
-              research_areas: values[FORM_FIELDS.RESEARCH_AREAS],
+              research_domains: values[FORM_FIELDS.RESEARCH_DOMAINS],
             },
           })
         );
@@ -122,7 +116,6 @@ const SurveyStep = ({
                 {advancedMsg(roleMessagePrefix + option)}
               </Checkbox>
             ))}
-            <Checkbox value={OTHER_KEY}>{advancedMsg(roleMessagePrefix + OTHER_KEY)}</Checkbox>
           </Space>
         </Checkbox.Group>
       </Form.Item>
@@ -183,21 +176,19 @@ const SurveyStep = ({
       </Form.Item>
       <Form.Item
         className={styles.withCustomHelp}
-        name={FORM_FIELDS.RESEARCH_AREAS}
-        label={advancedMsg("survey_form_research_areas_label")}
+        name={FORM_FIELDS.RESEARCH_DOMAINS}
+        label={advancedMsg("survey_form_research_domains_label")}
         required={false}
         rules={[{ required: true }]}
       >
         <Checkbox.Group className={styles.checkBoxGroup}>
           <span className={styles.help}>{advancedMsg("checkbox_help")}</span>
           <Space direction="vertical">
-            {researchAreaOptions.sort(researchAreaSortFunction).map((option, index) => (
-              <Checkbox key={index} value={option}>
+            {researchDomainOptions.sort(researchAreaSortFunction).map((option) => (
+              <Checkbox key={option} value={option}>
                 {advancedMsg(researchAreaMessagePrefix + option)}
               </Checkbox>
             ))}
-            <Checkbox value={NOT_APPLICABLE_KEY}>{advancedMsg(researchAreaMessagePrefix + NOT_APPLICABLE_KEY)}</Checkbox>
-            <Checkbox value={OTHER_KEY}>{advancedMsg(researchAreaMessagePrefix + OTHER_KEY)}</Checkbox>
           </Space>
         </Checkbox.Group>
       </Form.Item>

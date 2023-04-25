@@ -24,6 +24,7 @@
     "@reduxjs/toolkit": "^1.8.0",
     "antd": "^4.19.3",
     "axios": "^0.26.1",
+    "axios-hooks": "^4.0.0",
     "classnames": "^2.3.1",
     "json-form-data": "^1.7.2",
     "keycloakify": "^4.7.0",

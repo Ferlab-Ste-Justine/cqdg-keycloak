@@ -17,7 +17,7 @@ export const { kcContext } = getKcContext<
         affiliation?: string;
         portal_usages?: string[];
         roles?: string[];
-        research_areas?: string[];
+        research_domains?: string[];
         accepted_terms: boolean;
         understand_disclaimer: boolean;
         commercial_use_reason?: string;
@@ -66,7 +66,7 @@ export const { kcContext } = getKcContext<
       userProfile: {
         editUsernameAllowed: false,
         roles: ["bioinformatician", "clinician"],
-        research_areas: ["aging", "other"],
+        research_domains: ["aging", "other"],
         affiliation: "CHUSJ",
         accepted_terms: false,
         understand_disclaimer: false,
