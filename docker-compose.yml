@@ -29,6 +29,7 @@ services:
       KEYCLOAK_PASSWORD: password
       DEBUG: 'true'
       DEBUG_PORT: '*:8787'
-      ORCID_URL: 'https://sandbox.orcid.org'
+      ORCID_URL: ORCID_URL
+      USERS_API_URL: REACT_APP_USERS_API_URL
     depends_on:
       - keycloak-postgres

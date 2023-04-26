@@ -165,7 +165,7 @@ public class UserProfileExistAuthenticator implements Authenticator {
         model.setExternal_individual_email(formData.getFirst("external_individual_email"));
         model.setExternal_individual_fullname(formData.getFirst("external_individual_fullname"));
         model.setPortal_usages(formData.get("portal_usages"));
-        model.setResearch_areas(formData.get("research_areas"));
+        model.setresearch_domains(formData.get("research_domains"));
         model.setResearch_area_description(formData.getFirst("research_area_description"));
         model.setRoles(formData.get("roles"));
 
