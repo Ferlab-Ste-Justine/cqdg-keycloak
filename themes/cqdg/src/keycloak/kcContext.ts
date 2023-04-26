@@ -34,7 +34,7 @@ export const { kcContext } = getKcContext<
     }
 >({
   /* Uncomment to test outside of keycloak, ⚠️ don't forget to run 'npm run keycloak' at least once */
-  mockPageId: "login-update-profile.ftl",
+  // mockPageId: "login-update-profile.ftl",
   // mockPageId: "login.ftl",
   // mockPageId: "error.ftl",
   /**
