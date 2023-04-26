@@ -7,9 +7,9 @@ import useAxios from 'axios-hooks'
 import { registrationFlowActions } from "store/registrationFlow/slice";
 import { userLogin } from "store/registrationFlow/thunks";
 import { KcContext_LoginUpdateProfile } from "..";
+import { IUserOptions, sortOptionsLabelsByName } from "../../../utils";
 
 import styles from "./index.module.scss";
-import {IUserOptions, sortOptionsLabelsByName} from "../../../utils";
 
 enum FORM_FIELDS {
   ROLES = "roles",
