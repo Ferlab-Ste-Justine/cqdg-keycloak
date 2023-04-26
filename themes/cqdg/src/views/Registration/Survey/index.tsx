@@ -9,6 +9,7 @@ import { userLogin } from "store/registrationFlow/thunks";
 import { KcContext_LoginUpdateProfile } from "..";
 
 import styles from "./index.module.scss";
+import {IUserOptions, sortOptionsLabelsByName} from "../../../utils";
 
 enum FORM_FIELDS {
   ROLES = "roles",
@@ -17,21 +18,10 @@ enum FORM_FIELDS {
   RESEARCH_DOMAINS = "research_domains",
 }
 
-interface IOption {
-  label: string;
-  value: string;
-}
-
-interface IUserOptions {
-  roleOptions: IOption[];
-  researchDomainOptions: IOption[];
-}
-
 const { Text } = Typography;
 
 const roleMessagePrefix = "survey_form_role_";
-const researchAreaMessagePrefix = "survey_form_research_area_";
-
+const researchDomainMessagePrefix = "survey_form_research_domain_";
 const REACT_APP_USERS_API_URL = process.env.REACT_APP_USERS_API_URL || 'https://users.qa.cqdg.ferlab.bio';
 
 const SurveyStep = ({
@@ -49,10 +39,10 @@ const SurveyStep = ({
   const [{ data }] = useAxios<IUserOptions>(
       `${REACT_APP_USERS_API_URL}/userOptions`
   )
-  const roleOptions = data?.roleOptions?.map(e => e.value) || [];
-  const researchDomainOptions = data?.researchDomainOptions?.map(e => e.value) || [];
-
-  const researchAreaSortFunction = (area1: string, area2: string) => advancedMsgStr(researchAreaMessagePrefix + area1).localeCompare(advancedMsgStr(researchAreaMessagePrefix + area2));
+  const roleOptions = data?.roleOptions || [];
+  const researchDomainOptions = data?.researchDomainOptions || [];
+  const roleOptionsSorted = sortOptionsLabelsByName(roleOptions, advancedMsg, roleMessagePrefix);
+  const researchDomainOptionsSorted = sortOptionsLabelsByName(researchDomainOptions, advancedMsg, researchDomainMessagePrefix);
 
   const validateMessages = {
     required: advancedMsgStr('required_field_error'),
@@ -111,9 +101,9 @@ const SurveyStep = ({
         <Checkbox.Group className={styles.checkBoxGroup}>
           <span className={styles.help}>{advancedMsg("checkbox_help")}</span>
           <Space direction="vertical">
-            {roleOptions.map((option, index) => (
+            {roleOptionsSorted.map((option, index) => (
               <Checkbox key={index} value={option}>
-                {advancedMsg(roleMessagePrefix + option)}
+                {option.label}
               </Checkbox>
             ))}
           </Space>
@@ -177,16 +167,16 @@ const SurveyStep = ({
       <Form.Item
         className={styles.withCustomHelp}
         name={FORM_FIELDS.RESEARCH_DOMAINS}
-        label={advancedMsg("survey_form_research_domains_label")}
+        label={advancedMsg("survey_form_research_domain_label")}
         required={false}
         rules={[{ required: true }]}
       >
         <Checkbox.Group className={styles.checkBoxGroup}>
           <span className={styles.help}>{advancedMsg("checkbox_help")}</span>
           <Space direction="vertical">
-            {researchDomainOptions.sort(researchAreaSortFunction).map((option) => (
-              <Checkbox key={option} value={option}>
-                {advancedMsg(researchAreaMessagePrefix + option)}
+            {researchDomainOptionsSorted.map((option) => (
+              <Checkbox key={option.value} value={option.value}>
+                {option.label}
               </Checkbox>
             ))}
           </Space>
