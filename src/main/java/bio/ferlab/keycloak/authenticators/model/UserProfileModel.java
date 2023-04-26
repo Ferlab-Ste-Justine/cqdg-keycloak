@@ -16,7 +16,7 @@ public class UserProfileModel {
     private List<String> roles;
     private String affiliation;
     private List<String> portal_usages;
-    private List<String> research_areas;
+    private List<String> research_domains;
     private String research_area_description;
     private boolean accepted_terms;
     private boolean understand_disclaimer;
@@ -115,12 +115,12 @@ public class UserProfileModel {
         this.portal_usages = portal_usages;
     }
 
-    public List<String> getResearch_areas() {
-        return research_areas;
+    public List<String> getResearch_domains() {
+        return research_domains;
     }
 
-    public void setResearch_areas(List<String> research_areas) {
-        this.research_areas = research_areas;
+    public void setResearch_domains(List<String> research_domains) {
+        this.research_domains = research_domains;
     }
 
     public String getResearch_area_description() {
