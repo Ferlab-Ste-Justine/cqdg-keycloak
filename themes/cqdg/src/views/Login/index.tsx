@@ -6,6 +6,8 @@ import SideImageLayout from "layout/SideImage";
 import MainSideImage from "assets/side-img-svg.svg";
 import GoogleIcon from "assets/GoogleIcon";
 import OrcidIcon from "assets/ORCIDIcon";
+import MicrosoftIcon from "assets/MicrosoftIcon";
+import CiLogonIcon from "assets/CiLogonIcon";
 import { Button, Space, Typography } from "antd";
 import cx from "classnames";
 
@@ -35,6 +37,8 @@ const Login = memo(
     const socialImageMapping: any = {
       google: <GoogleIcon />,
       orcid: <OrcidIcon />,
+      microsoft: <MicrosoftIcon />,
+      cilogon: <CiLogonIcon />,
     };
 
     const socialProviders = social.providers || [];
