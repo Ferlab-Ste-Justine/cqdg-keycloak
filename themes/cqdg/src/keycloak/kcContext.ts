@@ -56,6 +56,16 @@ export const { kcContext } = getKcContext<
             alias: "orcid",
             displayName: "Orcid",
           },
+          {
+            providerId: "microsoft",
+            alias: "microsoft",
+            displayName: "Microsoft",
+          },
+          {
+            providerId: "cilogon",
+            alias: "cilogon",
+            displayName: "CiLogon",
+          },
         ],
       },
       registrationDisabled: true,
