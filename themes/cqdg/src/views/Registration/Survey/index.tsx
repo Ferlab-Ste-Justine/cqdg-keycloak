@@ -101,8 +101,8 @@ const SurveyStep = ({
         <Checkbox.Group className={styles.checkBoxGroup}>
           <span className={styles.help}>{advancedMsg("checkbox_help")}</span>
           <Space direction="vertical">
-            {roleOptionsSorted.map((option, index) => (
-              <Checkbox key={index} value={option}>
+            {roleOptionsSorted.map((option) => (
+              <Checkbox key={option.value} value={option.value}>
                 {option.label}
               </Checkbox>
             ))}
