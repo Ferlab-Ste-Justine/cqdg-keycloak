@@ -3,11 +3,10 @@ import { Button, Checkbox, Form, Input, Space, Typography } from "antd";
 import cx from "classnames";
 import { useDispatch } from "react-redux";
 import { useKcMessage } from "keycloakify";
-import useAxios from 'axios-hooks'
 import { registrationFlowActions } from "store/registrationFlow/slice";
 import { userLogin } from "store/registrationFlow/thunks";
 import { KcContext_LoginUpdateProfile } from "..";
-import { IUserOptions, sortOptionsLabelsByName } from "../../../utils";
+import { sortOptionsLabelsByName } from "../../../utils";
 
 import styles from "./index.module.scss";
 
@@ -22,7 +21,6 @@ const { Text } = Typography;
 
 const roleMessagePrefix = "survey_form_role_";
 const researchDomainMessagePrefix = "survey_form_research_domain_";
-const REACT_APP_USERS_API_URL = process.env.REACT_APP_USERS_API_URL || 'https://users.qa.cqdg.ferlab.bio';
 
 const SurveyStep = ({
   kcContext,
@@ -36,11 +34,8 @@ const SurveyStep = ({
 
   const { advancedMsg, advancedMsgStr } = useKcMessage();
 
-  const [{ data }] = useAxios<IUserOptions>(
-      `${REACT_APP_USERS_API_URL}/userOptions`
-  )
-  const roleOptions = data?.roleOptions || [];
-  const researchDomainOptions = data?.researchDomainOptions || [];
+  const roleOptions = kcContext.userOptions.roleOptions || [];
+  const researchDomainOptions = kcContext.userOptions.researchDomainOptions || [];
   const roleOptionsSorted = sortOptionsLabelsByName(roleOptions, advancedMsg, roleMessagePrefix);
   const researchDomainOptionsSorted = sortOptionsLabelsByName(researchDomainOptions, advancedMsg, researchDomainMessagePrefix);
 

@@ -1,5 +1,6 @@
 package bio.ferlab.keycloak.authenticators;
 
+import bio.ferlab.keycloak.authenticators.model.UserOptionsModel;
 import bio.ferlab.keycloak.authenticators.model.UserProfileModel;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
@@ -33,6 +34,7 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.keycloak.forms.login.LoginFormsProvider.UPDATE_PROFILE_CONTEXT_ATTR;
 
@@ -64,6 +66,7 @@ public class UserProfileExistAuthenticator implements Authenticator {
                     .setAttribute(UPDATE_PROFILE_CONTEXT_ATTR, userBasedContext)
                     .setAttribute("userProfile", userProfile.orElse(defaultProfile))
                     .setAttribute("redirectUrl", redirect)
+                    .setAttribute("userOptions", getUserOptions(context).asMap())
                     .setFormData(null)
                     .createUpdateProfilePage();
             context.challenge(challenge);
@@ -74,6 +77,17 @@ public class UserProfileExistAuthenticator implements Authenticator {
 
     private String getUserApiUri(AuthenticationFlowContext context) {
         return context.getAuthenticatorConfig().getConfig().get("userProfileApiUri") + "/user";
+    }
+
+    private UserOptionsModel getUserOptions(AuthenticationFlowContext context) {
+        String userOptionApi = context.getAuthenticatorConfig().getConfig().get("userProfileApiUri") + "/userOptions";
+        HttpResponse<UserOptionsModel> response = Unirest.get(userOptionApi)
+                .asObject(UserOptionsModel.class);
+        if (response.isSuccess()) {
+            return response.getBody();
+        } else {
+            throw new IllegalStateException("Error when sending request userOptions to user api, response code=" + response.getStatus());
+        }
     }
 
     private Optional<UserProfileModel> getUserProfile(AuthenticationFlowContext context) {
