@@ -1,12 +1,12 @@
 FROM node:18-alpine3.15 as builder-theme
 WORKDIR /app
 COPY . /app
-RUN cd themes/cqdg && npm install && npm run keycloak
+RUN cd cqdg-theme/ && npm install && npm run keycloak
 
 FROM maven:3-adoptopenjdk-16 as builder-providers
 WORKDIR /app
 COPY . /app
-RUN mvn clean package -DskipTests
+RUN cd cqdg-providers/ && mvn clean package -DskipTests
 
 FROM quay.io/keycloak/keycloak:21.1.1
 
@@ -23,8 +23,8 @@ ENV JAVA_OPTS_APPEND=-Djgroups.dns.query=keycloak-headless
 
 WORKDIR /opt/keycloak
 
-COPY --from=builder-providers /app/target/bio.ferlab.keycloak.cqdg-keycloak-ext.jar /opt/keycloak/providers
-COPY --from=builder-theme /app/themes/cqdg/build_keycloak/src/main/resources/theme/keycloakify-cqgc-app /opt/keycloak/themes/keycloakify-cqgc-app
+COPY --from=builder-providers /app/cqdg-providers//target/bio.ferlab.keycloak.cqdg-keycloak-ext.jar /opt/keycloak/providers
+COPY --from=builder-theme /app/cqdg-theme/build_keycloak/src/main/resources/theme/keycloakify-cqdg-app /opt/keycloak/themes/keycloakify-cqdg-app
 
 RUN /opt/keycloak/bin/kc.sh build
 
