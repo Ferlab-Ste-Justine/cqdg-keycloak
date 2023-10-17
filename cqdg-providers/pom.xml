@@ -12,7 +12,9 @@
 <packaging>jar</packaging>
 
 <properties>
-    <maven-compiler.release>11</maven-compiler.release>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <maven-compiler.release>17</maven-compiler.release>
     <maven-compiler.version>3.10.1</maven-compiler.version>
     <keycloak.version>22.0.3</keycloak.version>
     <slf4j.version>1.7.36</slf4j.version>
@@ -95,12 +97,26 @@
     <plugins>
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>${maven-compiler.version}</version>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>3.6.0</version>
             <configuration>
-                <release>${maven-compiler.release}</release>
+                <!-- get all project dependencies -->
+                <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
             </configuration>
+            <executions>
+                <execution>
+                    <id>make-assembly</id>
+                    <!-- bind to the packaging phase -->
+                    <phase>package</phase>
+                    <goals>
+                        <goal>single</goal>
+                    </goals>
+                </execution>
+            </executions>
         </plugin>
     </plugins>
+
 </build>
 </project>
