@@ -2,8 +2,8 @@ package bio.ferlab.keycloak.authenticators;
 
 import bio.ferlab.keycloak.authenticators.model.UserOptionsModel;
 import bio.ferlab.keycloak.authenticators.model.UserProfileModel;
-import jakarta.ws.rs.core.MultivaluedMap;
-import jakarta.ws.rs.core.Response;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.MultivaluedMap;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
 import org.jboss.logging.Logger;
