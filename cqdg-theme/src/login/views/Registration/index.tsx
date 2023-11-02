@@ -1,9 +1,9 @@
 import ScrollContent from '@ferlab/ui/core/layout/ScrollContent';
-import { I18n } from 'keycloak/i18n';
-import { KcContext } from 'keycloak/kcContext';
 import { PageProps } from 'keycloakify/login';
 import SideImageLayout from 'layout/SideImage';
-import { ErrorContainer } from 'views/Error';
+import { I18n } from 'login/keycloak/i18n';
+import { KcContext } from 'login/keycloak/kcContext';
+import { ErrorContainer } from 'login/views/Error';
 
 import MainSideImage from 'assets/side-img-svg.svg';
 import { useRegistrationFlow } from 'store/registrationFlow';
