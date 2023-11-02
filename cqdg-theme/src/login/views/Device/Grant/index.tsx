@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-// import { Form, Input, Space } from 'antd';
 import { Input, Space } from 'antd';
 import { PageProps } from 'keycloakify/login';
 import SideImageLayout from 'layout/SideImage';
