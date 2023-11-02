@@ -2,13 +2,13 @@ import { useDispatch } from 'react-redux';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input, Space, Typography } from 'antd';
 import cx from 'classnames';
-import { KcContext } from 'keycloak/kcContext';
 import { I18n } from 'keycloakify/login/i18n';
+import { KcContext } from 'login/keycloak/kcContext';
 
 import { registrationFlowActions } from 'store/registrationFlow/slice';
 import { userLogin } from 'store/registrationFlow/thunks';
 
-import { sortOptionsLabelsByName } from '../../../utils';
+import { sortOptionsLabelsByName } from '../../../../utils';
 
 import styles from './index.module.scss';
 

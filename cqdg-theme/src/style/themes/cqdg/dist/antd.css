@@ -1275,29 +1275,29 @@ html {
   line-height: 22px;
 }
 .ant-alert-success {
-  background-color: #f6ffed;
-  border: 1px solid #b9ed91;
+  background-color: #f5ffeb;
+  border: 1px solid #94de63;
 }
 .ant-alert-success .ant-alert-icon {
   color: #53c71a;
 }
 .ant-alert-info {
-  background-color: #e6fcff;
-  border: 1px solid #7ae9ff;
+  background-color: #F2FBFE;
+  border: 1px solid #61CDF5;
 }
 .ant-alert-info .ant-alert-icon {
   color: #00AEEF;
 }
 .ant-alert-warning {
   background-color: #fff7e6;
-  border: 1px solid #ffd591;
+  border: 1px solid #ffc069;
 }
 .ant-alert-warning .ant-alert-icon {
   color: #fa8c16;
 }
 .ant-alert-error {
-  background-color: #e6dcd8;
-  border: 1px solid #cca093;
+  background-color: #FCF6F5;
+  border: 1px solid #DB8F84;
 }
 .ant-alert-error .ant-alert-icon {
   color: #A73928;
@@ -1321,18 +1321,18 @@ html {
   cursor: pointer;
 }
 .ant-alert-close-icon .anticon-close {
-  color: #486F90;
+  color: inherit;
   transition: color 0.3s;
 }
 .ant-alert-close-icon .anticon-close:hover {
-  color: rgba(0, 0, 0, 0.75);
+  color: inherit;
 }
 .ant-alert-close-text {
-  color: #486F90;
+  color: inherit;
   transition: color 0.3s;
 }
 .ant-alert-close-text:hover {
-  color: rgba(0, 0, 0, 0.75);
+  color: inherit;
 }
 .ant-alert-with-description {
   align-items: flex-start;
@@ -26544,6 +26544,29 @@ div.ant-typography-edit-content.ant-typography-rtl {
 .ant-upload-list-rtl.ant-upload-list-picture-card .ant-upload-list-item-file + .ant-upload-list-item-name {
   margin: 8px 0 0;
   padding: 0;
+}
+.ant-alert-success .ant-alert-message,
+.ant-alert-success .ant-alert-close-icon {
+  color: #135200;
+}
+.ant-alert-info .ant-alert-message,
+.ant-alert-info .ant-alert-close-icon {
+  color: #005673;
+}
+.ant-alert-warning .ant-alert-message,
+.ant-alert-warning .ant-alert-close-icon {
+  color: #873800;
+}
+.ant-alert-error .ant-alert-message,
+.ant-alert-error .ant-alert-close-icon {
+  color: #86291B;
+}
+.ant-alert-message a {
+  color: inherit;
+  text-decoration: underline;
+}
+.ant-alert-message a:hover {
+  text-decoration: none;
 }
 .ant-btn.iconRight {
   display: flex;

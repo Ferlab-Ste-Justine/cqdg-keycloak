@@ -1,8 +1,8 @@
 import { Button, Space, Typography } from 'antd';
-import { I18n } from 'keycloak/i18n';
-import { KcContext } from 'keycloak/kcContext';
 import { PageProps } from 'keycloakify/login';
 import SideImageLayout from 'layout/SideImage';
+import { I18n } from 'login/keycloak/i18n';
+import { KcContext } from 'login/keycloak/kcContext';
 
 import ErrorIcon from 'assets/ErrorIcon';
 import MainSideImage from 'assets/side-img-svg.svg';
@@ -10,6 +10,8 @@ import MainSideImage from 'assets/side-img-svg.svg';
 import styles from './index.module.scss';
 
 const { Title, Text } = Typography;
+
+const OAUTH2_DEVICE_AUTHORIZATION_GRANT_DISABLED = 'OAUTH2_DEVICE_AUTHORIZATION_GRANT_DISABLED';
 
 const ErrorContainer = ({
   redirectUrl,
@@ -32,8 +34,21 @@ const ErrorContainer = ({
 
 const Error = (props: PageProps<Extract<KcContext, { pageId: 'error.ftl' }>, I18n>) => {
   const { kcContext, i18n } = props;
-  const { client } = kcContext;
+  const { client, message } = kcContext;
   const { advancedMsgStr } = i18n;
+
+  if (message && advancedMsgStr(message?.summary) === OAUTH2_DEVICE_AUTHORIZATION_GRANT_DISABLED) {
+    return (
+      <SideImageLayout sideImgSrc={MainSideImage}>
+        <div className={styles.infoContainer}>
+          <ErrorIcon className={styles.icon} />
+          <Title level={4}>{advancedMsgStr('device_flow_disabled_title')}</Title>
+          <Text>{advancedMsgStr('device_flow_disabled_message')}</Text>
+          <Text>[Support info TBD]</Text>
+        </div>
+      </SideImageLayout>
+    );
+  }
 
   return (
     <SideImageLayout sideImgSrc={MainSideImage} className={styles.errorPage}>

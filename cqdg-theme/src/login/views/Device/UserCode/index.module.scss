@@ -1,0 +1,11 @@
+.userCodePage {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .userCodeForm {
+        input {
+            max-width: 320px;       
+        }
+    }
+}

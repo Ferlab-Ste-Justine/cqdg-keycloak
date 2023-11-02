@@ -3,8 +3,8 @@ import { ArrowRightOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import ScrollContent from '@ferlab/ui/core/layout/ScrollContent';
 import GridCard from '@ferlab/ui/core/view/v2/GridCard';
 import { Button, Checkbox, Form, Space, Tooltip, Typography } from 'antd';
-import { KcContext } from 'keycloak/kcContext';
 import { I18n } from 'keycloakify/login/i18n';
+import { KcContext } from 'login/keycloak/kcContext';
 
 import { useRegistrationFlow } from 'store/registrationFlow';
 import { registrationFlowActions } from 'store/registrationFlow/slice';

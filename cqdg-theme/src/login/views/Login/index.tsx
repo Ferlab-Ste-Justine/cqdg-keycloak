@@ -1,11 +1,11 @@
 import { Button, Space, Typography } from 'antd';
 import cx from 'classnames';
-import type { I18n } from 'keycloak/i18n';
-import { KcContext } from 'keycloak/kcContext';
 import { PageProps } from 'keycloakify/login';
 import { useGetClassName } from 'keycloakify/login/lib/useGetClassName';
 import { assert } from 'keycloakify/tools/assert';
 import SideImageLayout from 'layout/SideImage';
+import type { I18n } from 'login/keycloak/i18n';
+import { KcContext } from 'login/keycloak/kcContext';
 
 import CiLogonIcon from 'assets/CiLogonIcon';
 import CQDGLogoFull from 'assets/CQDGLogoFull';
