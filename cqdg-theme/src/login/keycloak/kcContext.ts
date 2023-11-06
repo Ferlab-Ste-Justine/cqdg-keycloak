@@ -36,16 +36,6 @@ type TUserOptions = {
   }[];
 };
 
-type TClientScopeRequested = {
-  consentScreenText: string;
-};
-
-type TOAuth = {
-  code: string;
-  clientScopesRequested: TClientScopeRequested[];
-  client: string;
-};
-
 export type KcContextExtension =
   // NOTE: A 'keycloakify' field must be added
   // in the package.json to generate theses extra pages
@@ -53,19 +43,12 @@ export type KcContextExtension =
   // NOTE: register.ftl is deprecated in favor of register-user-profile.ftl
   // but let's say we use it anyway and have this plugin enabled: https://github.com/micedre/keycloak-mail-whitelisting
   // keycloak-mail-whitelisting define the non standard ftl global authorizedMailDomains, we declare it here.
-  | {
-      pageId: 'login-update-profile.ftl';
-      redirectUrl: string;
-      userProfile: TUserProfile;
-      userOptions: TUserOptions;
-    }
-  | {
-      pageId: 'login-oauth2-device-verify-user-code.ftl';
-    }
-  | {
-      pageId: 'login-oauth-grant.ftl';
-      oauth: TOAuth;
-    };
+  {
+    pageId: 'login-update-profile.ftl';
+    redirectUrl: string;
+    userProfile: TUserProfile;
+    userOptions: TUserOptions;
+  };
 
 export const { kcContext } = getKcContext<KcContextExtension>({
   /* Uncomment to test outside of keycloak, ⚠️ don't forget to run 'npm run keycloak' at least once */
@@ -163,15 +146,6 @@ export const { kcContext } = getKcContext<KcContextExtension>({
     },
     {
       pageId: 'login-oauth-grant.ftl',
-      oauth: {
-        code: 'FAKE_CODE',
-        client: 'FAKE_CLIENT',
-        clientScopesRequested: [
-          { consentScreenText: 'profile' },
-          { consentScreenText: 'roles' },
-          { consentScreenText: 'email' },
-        ],
-      },
     },
   ],
 });
