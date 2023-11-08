@@ -188,7 +188,7 @@ export const { useI18n } = createUseI18n({
     try_again: 'Réessayer',
     required_field_error: 'Ce champ est obligatoire',
     verifyOAuth2DeviceUserCode:
-      'Enter the one-time code provided in your terminal and click submit', // We want to always diplay this in english
+      'Enter the one-time code provided in your terminal and click submit', // We want to always display this in english
     submit_en: 'Submit',
     oauth2DeviceInvalidUserCodeMessage: 'Code invalide. Veuillez réessayer.',
     oauth2DeviceExpiredUserCodeMessage: 'OAUTH2_DEVICE_EXPIRED_USER_CODE',
