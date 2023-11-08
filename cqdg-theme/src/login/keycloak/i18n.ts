@@ -78,6 +78,7 @@ export const { useI18n } = createUseI18n({
     required_field_error: 'This field is required',
     verifyOAuth2DeviceUserCode:
       'Enter the one-time code provided in your terminal and click submit',
+    submit_en: 'Submit',
     oauth2DeviceInvalidUserCodeMessage: 'Invalid code. Please try again.',
     oauth2DeviceExpiredUserCodeMessage: 'OAUTH2_DEVICE_EXPIRED_USER_CODE',
     device_flow_code_expired_title: 'This code has expired',
@@ -187,7 +188,8 @@ export const { useI18n } = createUseI18n({
     try_again: 'Réessayer',
     required_field_error: 'Ce champ est obligatoire',
     verifyOAuth2DeviceUserCode:
-      'Entrez le code à usage unique fourni par votre terminal et cliquez sur soumettre',
+      'Enter the one-time code provided in your terminal and click submit', // We want to always diplay this in english
+    submit_en: 'Submit',
     oauth2DeviceInvalidUserCodeMessage: 'Code invalide. Veuillez réessayer.',
     oauth2DeviceExpiredUserCodeMessage: 'OAUTH2_DEVICE_EXPIRED_USER_CODE',
     device_flow_code_expired_title: 'Code expiré',

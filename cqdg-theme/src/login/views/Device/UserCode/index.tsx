@@ -50,7 +50,7 @@ const DeviceUserCode = (
           </Form.Item>
           <Space size={'middle'}>
             <Button type="primary" htmlType="submit" disabled={isLoginButtonDisabled}>
-              {advancedMsgStr('submit')}
+              {advancedMsgStr('submit_en')}
             </Button>
           </Space>
         </Form>
