@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Button, Space, Typography } from 'antd';
 import cx from 'classnames';
 import { PageProps } from 'keycloakify/login';
@@ -38,6 +39,15 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
   };
 
   const socialProviders = social.providers || [];
+
+  //CQDG-480 replace url params 'ui_locales' to 'kc_locale'
+  useEffect(() => {
+    const uiLocales = new URLSearchParams(window.location.search).get('ui_locales');
+    const isSupported = locale?.supported.find(({ languageTag }) => languageTag === uiLocales);
+    if (uiLocales && isSupported) {
+      changeLocale(uiLocales);
+    }
+  }, [changeLocale, locale?.supported]);
 
   return (
     <SideImageLayout sideImgSrc={MainSideImage} className={styles.loginPage}>

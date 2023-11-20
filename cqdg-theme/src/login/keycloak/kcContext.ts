@@ -53,7 +53,7 @@ export type KcContextExtension =
 export const { kcContext } = getKcContext<KcContextExtension>({
   /* Uncomment to test outside of keycloak, ⚠️ don't forget to run 'npm run keycloak' at least once */
   // mockPageId: 'login-update-profile.ftl',
-  // mockPageId: 'login.ftl',
+  mockPageId: 'login.ftl',
   // mockPageId: 'error.ftl',
   // mockPageId: 'login-oauth2-device-verify-user-code.ftl',
   // mockPageId: 'login-oauth-grant.ftl',
@@ -92,7 +92,7 @@ export const { kcContext } = getKcContext<KcContextExtension>({
     },
     {
       pageId: 'login-update-profile.ftl',
-      redirectUrl: 'https://portalv2.qa.cqdg.ferlab.bio',
+      redirectUrl: 'https://portail.qa.juno.cqdg.ferlab.bio',
       userProfile: {
         editUsernameAllowed: false,
         roles: ['bioinformatician_software_developer', 'clinician'],
