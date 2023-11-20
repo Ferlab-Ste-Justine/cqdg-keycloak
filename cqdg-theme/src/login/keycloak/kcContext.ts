@@ -92,7 +92,7 @@ export const { kcContext } = getKcContext<KcContextExtension>({
     },
     {
       pageId: 'login-update-profile.ftl',
-      redirectUrl: 'https://portalv2.qa.cqdg.ferlab.bio',
+      redirectUrl: 'https://portail.qa.juno.cqdg.ferlab.bio',
       userProfile: {
         editUsernameAllowed: false,
         roles: ['bioinformatician_software_developer', 'clinician'],
