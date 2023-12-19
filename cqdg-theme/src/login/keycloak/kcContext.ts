@@ -93,6 +93,9 @@ export const { kcContext } = getKcContext<KcContextExtension>({
     {
       pageId: 'login-update-profile.ftl',
       redirectUrl: 'https://portail.qa.juno.cqdg.ferlab.bio',
+      locale: {
+        currentLanguageTag: 'fr',
+      },
       userProfile: {
         editUsernameAllowed: false,
         roles: ['bioinformatician_software_developer', 'clinician'],
@@ -115,6 +118,10 @@ export const { kcContext } = getKcContext<KcContextExtension>({
           {
             value: 'employee_in_governmental_agency',
             label: 'Employee in a governmental agency',
+          },
+          {
+            value: 'other',
+            label: 'Other',
           },
         ],
         researchDomainOptions: [
