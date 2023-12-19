@@ -46,7 +46,7 @@ export const { useI18n } = createUseI18n({
       'Representative of a commercial or for-profit company',
     survey_form_role_bioinformatician_software_developer: 'Bioinformatician, software developer',
     survey_form_role_employee_in_governmental_agency: 'Employee in a governmental agency',
-    survey_form_role_other: 'Other',
+    survey_form_role_other: 'OOther',
     survey_form_affiliation_label: 'Affiliation',
     survey_form_affiliation_help: 'Provide institutional or organizational affiliation',
     survey_form_no_affiliation_label: 'I do not have an institutional affiliation',
@@ -154,7 +154,7 @@ export const { useI18n } = createUseI18n({
       "Représentant(e) d'une entreprise commerciale ou à but lucratif",
     survey_form_role_bioinformatician_software_developer:
       'Bioinformaticien(ne), développeur(e) logiciel',
-    survey_form_role_clinician: 'Clinician',
+    survey_form_role_clinician: 'Clinicien(ne)',
     survey_form_role_employee_in_governmental_agency: 'Employé(e) d’un organisme gouvernemental',
     survey_form_role_other: 'Autre',
     survey_form_affiliation_label: 'Affiliation',

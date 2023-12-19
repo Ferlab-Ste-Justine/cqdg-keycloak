@@ -25,10 +25,9 @@ export const sortOptionsLabelsByName = (options: IOption[], advancedMsg: any, me
         const aLabel = advancedMsg(`${messagePrefix}${a.value}`);
         const bLabel = advancedMsg(`${messagePrefix}${b.value}`);
         return aLabel < bLabel ? -1 : 1;
-      })
-      .map((option) => ({
-        value: option.value,
-        label: advancedMsg(`${messagePrefix}${option.value}`) || option.label,
-      })),
+      }),
     ...options.filter((option) => option.value === OTHER_KEY),
-  ];
+  ].map((option) => ({
+    value: option.value,
+    label: advancedMsg(`${messagePrefix}${option.value}`) || option.label,
+  }));
