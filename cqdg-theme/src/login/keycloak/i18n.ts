@@ -186,7 +186,7 @@ export const { useI18n } = createUseI18n({
     error_message:
       'Nos serveurs rencontrent actuellement des difficultés techniques et ne sont pas en mesure de traiter votre demande.',
     try_again: 'Réessayer',
-    required_field_error: 'Ce champ est obligatoire',
+    required_field_error: 'Ce champ est requis',
     verifyOAuth2DeviceUserCode:
       'Enter the one-time code provided in your terminal and click submit', // We want to always display this in english
     submit_en: 'Submit',
