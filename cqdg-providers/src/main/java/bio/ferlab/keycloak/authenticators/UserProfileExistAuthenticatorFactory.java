@@ -24,7 +24,7 @@ public class UserProfileExistAuthenticatorFactory implements AuthenticatorFactor
 
     @Override
     public String getReferenceCategory() {
-        return "Verify  User Profile exist authenticator";
+        return "Verify User Profile exist authenticator";
     }
 
     @Override
