@@ -17,6 +17,7 @@ import org.keycloak.crypto.KeyWrapper;
 import org.keycloak.events.EventBuilder;
 import org.keycloak.events.EventType;
 import org.keycloak.jose.jws.JWSBuilder;
+import org.keycloak.locale.LocaleSelectorProvider;
 import org.keycloak.models.KeycloakContext;
 import org.keycloak.models.KeycloakSession;
 import org.keycloak.models.RealmModel;
@@ -54,6 +55,7 @@ public class UserProfileExistAuthenticator implements Authenticator {
                 }
         );
         if (userProfile.isPresent() && userProfile.stream().anyMatch(UserProfileModel::isCompleted_registration)) {
+            updateLocale(context);
             context.success();
         } else {
             UpdateProfileContext userBasedContext = new UserUpdateProfileContext(context.getRealm(), user);
@@ -160,8 +162,28 @@ public class UserProfileExistAuthenticator implements Authenticator {
 
     }
 
+    private void updateLocale(AuthenticationFlowContext context) {
+        UserModel user = context.getUser();
+        String locale = context.getAuthenticationSession().getAuthNote(LocaleSelectorProvider.USER_REQUEST_LOCALE);
+        UserProfileModel model = new UserProfileModel();
+        model.setLocale(locale);
+
+        
+
+        Optional<UserProfileModel> userProfile = getUserProfile(context);
+        HttpResponse resp = Unirest.put(getUserApiUri(context))
+                .header("Content-Type", "application/json")
+                .header("Authorization", "Bearer " + getAccessToken(user, context.getSession()))
+                .body(model)
+                .asEmpty();
+        if (!resp.isSuccess()) {
+            throw new IllegalStateException("An error occured when updating user locale in profile api, status=" + resp.getStatus() + "body=" + resp.getBody());
+        }
+    }
+
     private void upsertProfile(MultivaluedMap<String, String> formData, AuthenticationFlowContext context) {
         UserModel user = context.getUser();
+        String locale = context.getAuthenticationSession().getAuthNote(LocaleSelectorProvider.USER_REQUEST_LOCALE);
         UserProfileModel model = new UserProfileModel();
 
         model.setFirst_name(formData.getFirst("first_name"));
@@ -181,6 +203,7 @@ public class UserProfileExistAuthenticator implements Authenticator {
         model.setResearch_domains(formData.get("research_domains"));
         model.setResearch_area_description(formData.getFirst("research_area_description"));
         model.setRoles(formData.get("roles"));
+        model.setLocale(locale);
 
         Optional<UserProfileModel> userProfile = getUserProfile(context);
         if (userProfile.isEmpty()) {

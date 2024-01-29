@@ -23,6 +23,7 @@ public class UserProfileModel {
     private String commercial_use_reason;
     private boolean completed_registration;
     private LocalDateTime consent_date;
+    private String locale;
 
     public UserProfileModel() {
     }
@@ -170,5 +171,13 @@ public class UserProfileModel {
 
     public void setConsent_date(LocalDateTime consent_date) {
         this.consent_date = consent_date;
+    }
+
+    public String getLocale() {
+        return locale;
+    }
+
+    public void setLocale(String locale) {
+        this.locale = locale;
     }
 }
