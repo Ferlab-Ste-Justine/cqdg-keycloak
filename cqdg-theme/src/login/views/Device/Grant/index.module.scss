@@ -1,28 +1,39 @@
 @import "../../../../style/themes/cqdg/dist/colors";
 
 .grantPage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: 80px;
+  margin-right: 80px;
 
-    .primary {
-        background-color: $blue-8;
-        color: $gray-1;
+  .spaceContainer {
+    justify-content: end;
+    width: 100%;
+  }
+
+  .scopeListContainer {
+    padding-left: 20px;
+  }
+
+  .primary {
+    background-color: $blue-8;
+    color: $gray-1;
         
-        &:hover {
-            background-color: $blue-9;
-            border-color: $blue-9;
-          }
-          &:focus {
-            background-color: $blue-8;
-            border-color: $blue-8;
-          }
-          &:active {
-            background-color: $blue-10;
-            border-color: $blue-10;
-          }
-          &:focus-visible {
-            box-shadow: 0 0 0 2px $gray-1, 0 0 0 4px $blue-8;
-          }
+    &:hover {
+      background-color: $blue-9;
+      border-color: $blue-9;
     }
+    &:focus {
+      background-color: $blue-8;
+      border-color: $blue-8;
+    }
+    &:active {
+      background-color: $blue-10;
+      border-color: $blue-10;
+    }
+    &:focus-visible {
+      box-shadow: 0 0 0 2px $gray-1, 0 0 0 4px $blue-8;
+    }
+  }
 }
