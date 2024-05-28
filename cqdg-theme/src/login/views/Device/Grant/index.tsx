@@ -1,4 +1,5 @@
-import { Input, Space } from 'antd';
+import { ArrowRightOutlined } from '@ant-design/icons';
+import { Button, Col, Input, Row, Space } from 'antd';
 import { PageProps } from 'keycloakify/login';
 import SideImageLayout from 'layout/SideImage';
 import type { I18n } from 'login/keycloak/i18n';
@@ -19,7 +20,7 @@ const DeviceGrant = (
     <SideImageLayout sideImgSrc={MainSideImage}>
       <div className={styles.grantPage}>
         <h3>{advancedMsgStr('oauthGrantRequest')}</h3>
-        <ul>
+        <ul className={styles.scopeListContainer}>
           {oauth.clientScopesRequested.map((clientScope) => (
             <li key={clientScope.consentScreenText}>
               <span>{advancedMsgStr(clientScope.consentScreenText)}</span>
@@ -27,19 +28,33 @@ const DeviceGrant = (
           ))}
         </ul>
 
-        <form className={styles.userGrantForm} action={(url as any).oauthAction} method="POST">
+        <form action={(url as any).oauthAction} method="POST">
           <Input type="hidden" name="code" value={oauth.code} />
           <div>
             <div id="kc-form-buttons">
-              <Space>
-                <Input
-                  name="accept"
+              <Space className={styles.spaceContainer}>
+                <Button
+                  id="kc-cancel"
+                  name="cancel"
+                  htmlType="submit"
+                  value={advancedMsgStr('doNo')}
+                >
+                  {advancedMsgStr('cancel')}
+                </Button>
+                <Button
                   id="kc-login"
-                  type="submit"
+                  name="accept"
+                  htmlType="submit"
+                  type="primary"
                   value={advancedMsgStr('doYes')}
-                  className={styles.primary}
-                />
-                <Input name="cancel" id="kc-cancel" type="submit" value={advancedMsgStr('doNo')} />
+                >
+                  <Row justify="end" gutter={8}>
+                    <Col>{advancedMsgStr('next')}</Col>
+                    <Col>
+                      <ArrowRightOutlined />
+                    </Col>
+                  </Row>
+                </Button>
               </Space>
             </div>
           </div>
