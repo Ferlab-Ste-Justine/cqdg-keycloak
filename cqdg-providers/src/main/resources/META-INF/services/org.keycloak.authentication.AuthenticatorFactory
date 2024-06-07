@@ -1,2 +1,3 @@
 bio.ferlab.keycloak.authenticators.EmailWhitelistAuthenticatorFactory
 bio.ferlab.keycloak.authenticators.UserProfileExistAuthenticatorFactory
+bio.ferlab.keycloak.authenticators.ClientConditionalOtpFormAuthenticatorFactory
