@@ -106,7 +106,7 @@ export const { useI18n } = createUseI18n({
       'By continuing to the next step, you agree to grant access to the following information:',
     profileScopeConsentText: 'Profil',
     emailScopeConsentText: 'Email address',
-    rolesScopeConsentText: 'Rôle',
+    rolesScopeConsentText: 'Role',
     alreadyLoggedIn: 'ALREADY_LOGGED_IN',
     already_logged_in_title: 'You are already connected',
     already_logged_in_message: 'You can close this window.',
