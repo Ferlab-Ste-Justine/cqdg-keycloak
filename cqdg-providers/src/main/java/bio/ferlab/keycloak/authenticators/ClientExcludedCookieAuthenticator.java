@@ -1,27 +1,20 @@
 package bio.ferlab.keycloak.authenticators;//
 
 import org.keycloak.authentication.AuthenticationFlowContext;
-import org.keycloak.authentication.Authenticator;
+import org.keycloak.authentication.authenticators.browser.CookieAuthenticator;
 import org.keycloak.authentication.authenticators.util.AcrStore;
-import org.keycloak.models.KeycloakSession;
-import org.keycloak.models.RealmModel;
-import org.keycloak.models.UserModel;
 import org.keycloak.protocol.LoginProtocol;
 import org.keycloak.services.managers.AuthenticationManager;
 import org.keycloak.sessions.AuthenticationSessionModel;
 
 import javax.ws.rs.core.MultivaluedMap;
-import java.util.Objects;
+import java.util.Arrays;
 import java.util.Optional;
 
-public class ClientExcludedCookieAuthenticator implements Authenticator {
+public class ClientExcludedCookieAuthenticator extends CookieAuthenticator {
     private static final String CLIENT_ID = "client_id";
 
     public ClientExcludedCookieAuthenticator() {
-    }
-
-    public boolean requiresUser() {
-        return false;
     }
 
     public void authenticate(AuthenticationFlowContext context) {
@@ -56,25 +49,13 @@ public class ClientExcludedCookieAuthenticator implements Authenticator {
 
     }
 
-    public void action(AuthenticationFlowContext context) {
-    }
-
     private boolean isExcludedClient(AuthenticationFlowContext context) {
         MultivaluedMap<String, String> queryParameters = context.getUriInfo().getQueryParameters();
 
-        Optional<String> clientRequest = queryParameters.get(CLIENT_ID).stream().reduce((first, second) -> second);
-        String clientForm =  context.getAuthenticatorConfig().getConfig().get("forceReAuthForClient");
+        Optional<String> clientRequest = queryParameters.get(CLIENT_ID).stream().reduce((first, second) -> second).map(String::toLowerCase);
 
-        return clientRequest.filter(s -> Objects.equals(clientForm, s)).isPresent();
-    }
+        String[] clientsForm =  context.getAuthenticatorConfig().getConfig().get("forceReAuthForClient").strip().toLowerCase().split("##");
 
-    public boolean configuredFor(KeycloakSession session, RealmModel realm, UserModel user) {
-        return true;
-    }
-
-    public void setRequiredActions(KeycloakSession session, RealmModel realm, UserModel user) {
-    }
-
-    public void close() {
+        return clientRequest.filter(clReq -> Arrays.asList(clientsForm).contains(clReq)).isPresent();
     }
 }

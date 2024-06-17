@@ -10,14 +10,13 @@ import org.keycloak.models.UserModel;
 import org.keycloak.models.UserModel.RequiredAction;
 
 import javax.ws.rs.core.MultivaluedMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class ClientConditionalOtpFormAuthenticator extends OTPFormAuthenticator {
-    public static final String FORCE_OTP_CLIENT = "forceOtpClient";
+    public static final String FORCE_OTP_CLIENT = "forceOtpClients";
     public static final String CLIENT_ID = "client_id";
+    private static final String[] EMPTY_ARRAY = new String[0];
 
     public ClientConditionalOtpFormAuthenticator() {
     }
@@ -44,10 +43,15 @@ public class ClientConditionalOtpFormAuthenticator extends OTPFormAuthenticator 
         super.authenticate(context);
     }
 
+    private boolean isClientsMatch(MultivaluedMap<String, String> queryParameters, String[] formClients) {
+        Optional<String> clientRequest = queryParameters.get(CLIENT_ID).stream().reduce((first, second) -> second).map(String::toLowerCase);
+        return clientRequest.filter(clReq -> Arrays.asList(formClients).contains(clReq)).isPresent();
+    }
+
     private OtpDecision voteForClient(MultivaluedMap<String, String> queryParameters, Map<String, String> config) {
         if (queryParameters.containsKey(CLIENT_ID) && config.containsKey(FORCE_OTP_CLIENT)) {
-            return queryParameters.get(CLIENT_ID).contains(config.get(FORCE_OTP_CLIENT)) ?
-                    OtpDecision.SHOW_OTP : OtpDecision.ABSTAIN;
+            String[] formClients = config.get(FORCE_OTP_CLIENT).trim().toLowerCase().split("##");
+            return isClientsMatch(queryParameters, formClients) ? OtpDecision.SHOW_OTP : OtpDecision.ABSTAIN;
         } else return OtpDecision.ABSTAIN;
     }
 
@@ -63,14 +67,15 @@ public class ClientConditionalOtpFormAuthenticator extends OTPFormAuthenticator 
         });
     }
 
-    private String getFormClient(RealmModel realm) {
+    private String[] getFormClients(RealmModel realm) {
         Optional<AuthenticatorConfigModel> authenticatorConfigModel = realm.getAuthenticatorConfigsStream().filter(c -> c.getConfig().containsKey(FORCE_OTP_CLIENT)).reduce((first, second) -> second);
-        return authenticatorConfigModel.map(configModel -> configModel.getConfig().getOrDefault(FORCE_OTP_CLIENT, null)).orElse(null);
+
+        return authenticatorConfigModel.map(configModel -> configModel.getConfig().get(FORCE_OTP_CLIENT).trim().toLowerCase().split("##")).orElse(EMPTY_ARRAY);
     };
 
 
     public void setRequiredActions(KeycloakSession session, RealmModel realm, UserModel user) {
-        String formClient = getFormClient(realm);
+        String[] formClients = getFormClients(realm);
         MultivaluedMap<String, String> queryParameters = session.getContext().getUri().getQueryParameters();
 
         if (!isOTPRequired(session, realm, user)) {
@@ -80,8 +85,8 @@ public class ClientConditionalOtpFormAuthenticator extends OTPFormAuthenticator 
             String configureTOTPAction = RequiredAction.CONFIGURE_TOTP.name();
             Objects.requireNonNull(configureTOTPAction);
 
-            if (userRequiredActionsStream.noneMatch(configureTOTPAction::equals) && !formClient.isEmpty()) {
-                if(queryParameters.containsKey(CLIENT_ID) && queryParameters.get(CLIENT_ID).contains(formClient)){
+            if (userRequiredActionsStream.noneMatch(configureTOTPAction::equals) && formClients != EMPTY_ARRAY) {
+                if(queryParameters.containsKey(CLIENT_ID) && isClientsMatch(queryParameters, formClients)){
                     user.addRequiredAction(RequiredAction.CONFIGURE_TOTP.name());
                 }
             }
